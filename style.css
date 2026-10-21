@@ -243,7 +243,7 @@ main, section:first-of-type, #home {
   /* A foto fica atrás, e um degradê escuro por cima ajuda a ler o texto */
   background:
     linear-gradient(rgba(2, 2, 32, 0.55), rgba(2, 2, 32, 0.80)),
-    url("imagens/ambiente.jpg") center / cover no-repeat !important;
+    url("img/ambiente01.jpg") center / cover no-repeat !important;
   min-height: 100vh;          /* ocupa a tela inteira */
   box-sizing: border-box;     /* o padding do menu não estoura a altura */
   display: flex;
