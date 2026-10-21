@@ -601,3 +601,67 @@ main, section:first-of-type, #home {
     border-radius: 16px;
   }
 }
+/* ==========================================================================
+   10. SEÇÃO REDES SOCIAIS (CARROSSEL)
+   ========================================================================== */
+#redes_social {
+  padding: 60px 0;
+  text-align: center;
+}
+
+#redes_social h2 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin: 0 0 10px;
+  padding: 0 20px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.redes-chamada {
+  margin: 0 0 25px;
+  padding: 0 20px;
+}
+
+/* No celular: carrossel que se arrasta para o lado */
+.carrossel {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;   /* cada foto "encaixa" ao arrastar */
+  padding: 10px 20px 25px;
+  margin-bottom: 10px;
+}
+
+.carrossel a {
+  flex: 0 0 240px;                 /* largura de cada foto */
+  scroll-snap-align: center;
+}
+
+.carrossel img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;             /* todas quadradas, como no Instagram */
+  object-fit: cover;               /* corta sem esticar */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.carrossel a:hover img {
+  transform: scale(1.04);
+}
+
+/* No computador: vira uma grade, sem precisar arrastar */
+@media (min-width: 769px) {
+  .carrossel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    max-width: 1000px;
+    margin: 0 auto 10px;
+    overflow: visible;
+  }
+
+  .carrossel a {
+    flex: none;
+  }
+}
