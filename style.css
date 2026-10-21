@@ -212,39 +212,53 @@ main, section:first-of-type, #home {
    5. BOTÃO FLUTUANTE DO WHATSAPP
    ========================================================================== */
 .btn-whatsapp {
-  position: fixed;            /* preso na tela, mesmo rolando a página */
-  bottom: 20px;               /* distância da borda de baixo */
-  right: 20px;                /* distância da borda da direita */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   display: flex;
-  align-items: center;        /* ícone e texto alinhados na vertical */
-  gap: 10px;                  /* espaço entre o ícone e o texto */
-  padding: 12px 20px;
-  background-color: #25d366;  /* verde do WhatsApp */
-  border-radius: 50px;        /* deixa as pontas arredondadas */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;          /* menor que antes (12px 20px) */
+  background-color: #25d366;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;             /* menor que antes (16px) */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-  z-index: 1000;              /* fica na frente do menu (999) e do conteúdo */
+  z-index: 1000;
   transition: transform 0.2s ease;
 }
 
 .btn-whatsapp:hover {
-  transform: scale(1.05);     /* cresce um pouquinho ao passar o mouse */
+  transform: scale(1.05);
 }
 
 .icone-whatsapp {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;   /* impede o ícone de ser espremido quando o texto é longo */
+  width: 24px;                 /* menor que antes (28px) */
+  height: 24px;
+  flex-shrink: 0;
   display: block;
 }
 
+/* No celular: só o ícone, num círculo */
 @media (max-width: 768px) {
   .btn-whatsapp {
     bottom: 15px;
     right: 15px;
-    padding: 10px 16px;
-    font-size: 14px;
+    width: 52px;
+    height: 52px;
+    padding: 0;                /* sem espaço extra, o círculo fica certinho */
+    gap: 0;
+    border-radius: 50%;
+  }
+
+  .texto-whatsapp {
+    display: none;             /* esconde o texto */
+  }
+
+  .icone-whatsapp {
+    width: 30px;               /* ícone um pouco maior, já que está sozinho */
+    height: 30px;
   }
 }
