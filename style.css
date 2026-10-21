@@ -510,19 +510,31 @@ main, section:first-of-type, #home {
   gap: 10px;
 }
 
-.redes_sociais a {
-  display: inline-block;
-  text-decoration: none;
-  padding: 8px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 50px;        /* formato de pílula, igual ao menu */
-  transition: background-color 0.2s ease;
+.redes_sociais a.rede {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;                 /* botão redondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
 }
 
-.redes_sociais a:hover {
-  background-color: rgba(255, 255, 255, 0.18);
+.redes_sociais a.rede:hover {
+  transform: scale(1.1);              /* cresce um pouco ao passar o mouse */
+  background-color: inherit;          /* mantém a cor própria da rede */
 }
 
+.redes_sociais .instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888);
+}
+
+.redes_sociais .facebook {
+  background: #1877f2;
+}
 .direitos {
   margin: 0;
   padding-top: 18px;
