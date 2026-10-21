@@ -172,16 +172,6 @@ header {
   border: 2px solid #ffffff;
   display: block;
 }
-.item-logo {
-    order: -1;            /* a logo vai para o começo do menu */
-    flex-basis: 100%;     /* ocupa a linha inteira, os links descem para baixo */
-  }
-
-  .item-logo .logo {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;       /* centraliza a logo na linha */
-  }
 
 main, section:first-of-type, #home {
   padding-top: 120px !important;
