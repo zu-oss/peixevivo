@@ -1,0 +1,157 @@
+/* Limpa margens e prepara a página */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* Torna todos os textos brancos para dar leitura perfeita no fundo azul */
+  color: #ffffff !important; 
+  font-family: sans-serif;
+}
+
+/* Garante que links e listas também fiquem visíveis */
+a, li, h1, h2, h3, p {
+  color: #ffffff !important;
+}
+
+/* O container principal com o degradê azul que funcionou */
+.oceano-caixa {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100vh !important;
+  background: linear-gradient(to bottom, #118ab2 0%, #0077b6 40%, #03045e 100%) !important;
+  overflow: hidden;
+  z-index: -9999 !important;
+}
+
+/* Container que segura as ondas na base da tela */
+.ondas-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%; /* Largura dupla para a onda correr infinitamente para o lado */
+  height: 280px; /* Aumentamos a altura total para aparecerem mais */
+}
+
+/* Configuração base das ondas - AGORA COM COR AZUL EM VEZ DE BRANCO MÁSCULO */
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* Trocamos o preenchimento para uma cor sólida azul que dá contraste no fundo */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,42.4V0Z' fill='%230096c7'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 50% 100%; 
+  background-repeat: repeat-x;
+  will-change: transform; 
+}
+
+/* --- Várias ondas empilhadas com alturas diferentes --- */
+
+/* Camada 1: Onda mais alta da frente (Azul mais claro) */
+.onda1 {
+  height: 260px;
+  opacity: 0.8;
+  animation: moverOndaDireita 15s infinite linear;
+}
+
+/* Camada 2: Onda do meio (Inverte a direção) */
+.onda2 {
+  height: 200px;
+  opacity: 0.6;
+  animation: moverOndaEsquerda 25s infinite linear;
+  filter: brightness(0.8); /* Deixa um tom mais escuro */
+}
+
+/* Camada 3: Onda mais profunda */
+.onda3 {
+  height: 140px;
+  opacity: 0.4;
+  animation: moverOndaDireita 40s infinite linear;
+  filter: brightness(0.6);
+}
+
+/* Camada 4: Onda da base */
+.onda4 {
+  height: 90px;
+  opacity: 0.3;
+  animation: moverOndaEsquerda 60s infinite linear;
+  filter: brightness(0.4);
+}
+
+/* Configuração do menu */
+.menu-navegacao ul {
+  display: flex;
+  justify-content: center; /* Centraliza o grupo todo na tela */
+  align-items: center;     /* Alinha todos os textos verticalmente com o centro da logo */
+  list-style: none;        /* Remove as bolinhas pretas da lista */
+  gap: 30px;               /* Cria um espaço uniforme de 30px entre cada item e a logo */
+  padding: 20px 0;
+  width: 100%;
+}
+
+header {
+  position: fixed;     /* Fixa o elemento na tela */
+  top: 0;              /* Cola ele exatamente no topo */
+  left: 0;             /* Alinha do lado esquerdo */
+  width: 100%;         /* Garante que ele ocupe toda a largura da tela */
+  z-index: 999;        /* Um número alto garante que ele fique na frente de tudo (inclusive das ondas) */
+  
+  /* OPCIONAL: Adiciona um fundo azul bem transparente para dar leitura nos links 
+     quando passarem por cima de fotos ou textos do seu site */
+  background-color: rgba(3, 4, 94, 0.4) !important; 
+  backdrop-filter: blur(10px); /* Cria um efeito moderno de vidro fosco */
+}
+
+/* AJUSTE IMPORTANTE PARA O SEU CONTEÚDO */
+/* Como o menu agora está fixo "flutuando", ele vai cobrir o topo do seu site. 
+   Adicione uma margem no topo da sua primeira seção para o conteúdo não começar escondido atrás do menu. */
+main, .container-home, #home {
+  padding-top: 100px !important; 
+}
+/* Estilo dos links do menu */
+.menu-navegacao a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff !important;
+  transition: opacity 0.2s ease;
+}
+
+/* Efeito ao passar o mouse nos links */
+.menu-navegacao a:hover {
+  opacity: 0.8;
+}
+
+/* FORMATAÇÃO DA LOGO EM CÍRCULO PEQUENO */
+.item-logo .logo {
+  width: 70px;          /* Define o tamanho da largura da bolinha */
+  height: 70px;         /* Define o tamanho da altura (precisa ser igual à largura) */
+  border-radius: 50%;   /* Corta a imagem perfeitamente em formato de círculo */
+  object-fit: cover;    /* Garante que a imagem se ajuste no círculo sem ficar esticada */
+  border: 2px solid #ffffff; /* Adiciona uma bordinha branca opcional para destacar a logo */
+  display: block;
+}
+
+
+/* ANIMAÇÕES HORIZONTAIS ULTRA LEVES (Sem travamento) */
+@keyframes moverOndaDireita {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes moverOndaEsquerda {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Força as suas seções atuais de conteúdo a ficarem transparentes */
+header, section, main, footer, div:not(.oceano-caixa):not(.ondas-wrapper):not(.wave) {
+  background-color: transparent !important;
+}
+/* Força as suas seções atuais a ficarem sem fundo branco */
+header, section, main, footer, div:not(.oceano-caixa):not(.ondas-wrapper):not(.wave) {
+  background: transparent !important;
+}
+
