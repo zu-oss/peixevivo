@@ -566,9 +566,7 @@ main, section:first-of-type, #home {
 .mapa {
   display: block;
   width: 100%;
-  max-width: 900px;
-  height: 400px;
-  margin: 0 auto;
+  height: 350px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
