@@ -665,3 +665,60 @@ main, section:first-of-type, #home {
     flex: none;
   }
 }
+/* ==========================================================================
+   11. SEÇÃO CONTATO
+   ========================================================================== */
+#contato {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#contato h2 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin: 0 0 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.contato-intro {
+  margin: 0 0 30px;
+}
+
+/* Os cartões ficam lado a lado no computador e empilham no celular */
+.contato-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card-contato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 26px 18px;
+  text-decoration: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.10);          /* vidro, igual à fachada */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card-contato:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.card-titulo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.card-info {
+  font-size: 15px;
+  opacity: 0.9;
+  overflow-wrap: anywhere;      /* o e-mail longo não estoura o cartão no celular */
+}
