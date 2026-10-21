@@ -281,7 +281,7 @@ main, section:first-of-type, #home {
     font-size: 16px;           /* um pouco maior, mais fácil de tocar */
   }
 
-  /* O botão das três barrinhas, no canto direito */
+  /* O botão das três barrinhas, no canto esquerdo */
   .botao-menu {
     display: flex;
     flex-direction: column;
@@ -290,7 +290,7 @@ main, section:first-of-type, #home {
     gap: 5px;
     position: absolute;
     top: 14px;
-    right: 16px;
+    left: 16px;
     width: 40px;
     height: 40px;
     padding: 0;
