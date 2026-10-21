@@ -1,157 +1,203 @@
-/* Limpa margens e prepara a página */
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E CORES DOS TEXTOS
+   ========================================================================== */
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  /* Torna todos os textos brancos para dar leitura perfeita no fundo azul */
-  color: #ffffff !important; 
+  background: transparent !important;
   font-family: sans-serif;
+  color: #ffffff !important; 
+  overflow-x: hidden;
 }
 
-/* Garante que links e listas também fiquem visíveis */
-a, li, h1, h2, h3, p {
+h1, h2, h3, h4, p, li, a, span, strong {
   color: #ffffff !important;
 }
 
-/* O container principal com o degradê azul que funcionou */
+header, main, section, footer, div:not(.oceano-caixa):not(.ondas-wrapper):not(.wave) {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+
+/* Fundo base: azul claro no topo, azul profundo liso embaixo */
 .oceano-caixa {
   position: fixed !important;
   top: 0;
   left: 0;
   width: 100% !important;
   height: 100vh !important;
-  background: linear-gradient(to bottom, #118ab2 0%, #0077b6 40%, #03045e 100%) !important;
+  background: linear-gradient(to bottom, #2a8fc4 0%, #0e6ba8 30%, #03406f 65%, #022a52 100%) !important;
   overflow: hidden;
   z-index: -9999 !important;
 }
 
-/* Container que segura as ondas na base da tela */
+/* Agora o container ocupa a tela INTEIRA (antes era só 45vh = ondas presas no topo) */
 .ondas-wrapper {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  width: 200%; /* Largura dupla para a onda correr infinitamente para o lado */
-  height: 280px; /* Aumentamos a altura total para aparecerem mais */
+  width: 100%;
+  height: 100%;
 }
 
-/* Configuração base das ondas - AGORA COM COR AZUL EM VEZ DE BRANCO MÁSCULO */
+/* Cada camada de onda:
+   - o "formato" da onda vem de uma máscara (SVG) que fica só na borda de cima
+   - abaixo da borda, a camada é preenchida até o fim da tela
+   - a cor, a altura da onda (--alt) e a posição vêm de variáveis em cada .ondaN */
 .wave {
   position: absolute;
-  bottom: 0;
+  left: 0;
+  width: calc(100% + 800px); /* sobra de 800px = tamanho de 1 repetição da onda */
+  height: calc(100vh - var(--topo));
+  top: var(--topo);
+  background-color: var(--cor);
+  will-change: transform;
+
+  -webkit-mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C200,20 400,20 600,60 S1000,100 1200,60 V120 H0 Z'/%3E%3C/svg%3E"),
+    linear-gradient(#000, #000);
+  mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C200,20 400,20 600,60 S1000,100 1200,60 V120 H0 Z'/%3E%3C/svg%3E"),
+    linear-gradient(#000, #000);
+
+  /* 1ª máscara = a borda ondulada (altura --alt) | 2ª = o preenchimento embaixo */
+  -webkit-mask-size: 800px var(--alt), 100% calc(100% - var(--alt) + 1px);
+  mask-size: 800px var(--alt), 100% calc(100% - var(--alt) + 1px);
+  -webkit-mask-position: 0 0, 0 calc(var(--alt) - 1px);
+  mask-position: 0 0, 0 calc(var(--alt) - 1px);
+  -webkit-mask-repeat: repeat-x, no-repeat;
+  mask-repeat: repeat-x, no-repeat;
+}
+
+/* --- As 6 camadas: de cima (clara, ondas grandes) para baixo (escura, ondas pequenas) ---
+   --topo : onde a camada começa na tela
+   --alt  : altura da onda (diminui conforme desce)
+   --cor  : cor da camada (escurece conforme desce)
+   opacity: transparência (as camadas se misturam)
+   animation: velocidade (20s a 45s) e direção (alternando)                              */
+
+.onda1 {
+  --topo: 0vh;  --alt: 170px; --cor: #5ec2ec;
+  opacity: 0.22;
+  animation: fluxo 22s linear infinite;
+}
+
+.onda2 {
+  --topo: 11vh; --alt: 150px; --cor: #2f9fd6;
+  opacity: 0.22;
+  animation: fluxoInverso 30s linear infinite;
+}
+
+.onda3 {
+  --topo: 24vh; --alt: 125px; --cor: #1479b8;
+  opacity: 0.24;
+  animation: fluxo 38s linear infinite;
+}
+
+.onda4 {
+  --topo: 38vh; --alt: 100px; --cor: #0a4f8a;
+  opacity: 0.28;
+  animation: fluxoInverso 44s linear infinite;
+}
+
+.onda5 {
+  --topo: 54vh; --alt: 75px;  --cor: #052f5e;
+  opacity: 0.32;
+  animation: fluxo 52s linear infinite;
+}
+
+.onda6 {
+  --topo: 72vh; --alt: 50px;  --cor: #021a3a;
+  opacity: 0.38;
+  animation: fluxoInverso 60s linear infinite;
+}
+
+/* Animações (rodam na placa de vídeo, então ficam leves).
+   Andam exatamente 800px = 1 repetição da onda, por isso o loop não "pula". */
+@keyframes fluxo {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-800px, 0, 0); }
+}
+
+@keyframes fluxoInverso {
+  0%   { transform: translate3d(-800px, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Quem prefere sem movimento no sistema, vê as ondas paradas */
+@media (prefers-reduced-motion: reduce) {
+  .wave { animation: none; }
+}
+
+/* ==========================================================================
+   3. MENU FIXO NO TOPO DO SITE
+   ========================================================================== */
+header {
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
-  /* Trocamos o preenchimento para uma cor sólida azul que dá contraste no fundo */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,42.4V0Z' fill='%230096c7'%3E%3C/path%3E%3C/svg%3E");
-  background-size: 50% 100%; 
-  background-repeat: repeat-x;
-  will-change: transform; 
+  z-index: 999;
+  background-color: rgba(3, 4, 94, 0.45) !important;
+  backdrop-filter: blur(10px);
 }
 
-/* --- Várias ondas empilhadas com alturas diferentes --- */
-
-/* Camada 1: Onda mais alta da frente (Azul mais claro) */
-.onda1 {
-  height: 260px;
-  opacity: 0.8;
-  animation: moverOndaDireita 15s infinite linear;
-}
-
-/* Camada 2: Onda do meio (Inverte a direção) */
-.onda2 {
-  height: 200px;
-  opacity: 0.6;
-  animation: moverOndaEsquerda 25s infinite linear;
-  filter: brightness(0.8); /* Deixa um tom mais escuro */
-}
-
-/* Camada 3: Onda mais profunda */
-.onda3 {
-  height: 140px;
-  opacity: 0.4;
-  animation: moverOndaDireita 40s infinite linear;
-  filter: brightness(0.6);
-}
-
-/* Camada 4: Onda da base */
-.onda4 {
-  height: 90px;
-  opacity: 0.3;
-  animation: moverOndaEsquerda 60s infinite linear;
-  filter: brightness(0.4);
-}
-
-/* Configuração do menu */
 .menu-navegacao ul {
   display: flex;
-  justify-content: center; /* Centraliza o grupo todo na tela */
-  align-items: center;     /* Alinha todos os textos verticalmente com o centro da logo */
-  list-style: none;        /* Remove as bolinhas pretas da lista */
-  gap: 30px;               /* Cria um espaço uniforme de 30px entre cada item e a logo */
-  padding: 20px 0;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 35px;
+  padding: 15px 0;
   width: 100%;
 }
 
-header {
-  position: fixed;     /* Fixa o elemento na tela */
-  top: 0;              /* Cola ele exatamente no topo */
-  left: 0;             /* Alinha do lado esquerdo */
-  width: 100%;         /* Garante que ele ocupe toda a largura da tela */
-  z-index: 999;        /* Um número alto garante que ele fique na frente de tudo (inclusive das ondas) */
-  
-  /* OPCIONAL: Adiciona um fundo azul bem transparente para dar leitura nos links 
-     quando passarem por cima de fotos ou textos do seu site */
-  background-color: rgba(3, 4, 94, 0.4) !important; 
-  backdrop-filter: blur(10px); /* Cria um efeito moderno de vidro fosco */
-}
-
-/* AJUSTE IMPORTANTE PARA O SEU CONTEÚDO */
-/* Como o menu agora está fixo "flutuando", ele vai cobrir o topo do seu site. 
-   Adicione uma margem no topo da sua primeira seção para o conteúdo não começar escondido atrás do menu. */
-main, .container-home, #home {
-  padding-top: 100px !important; 
-}
-/* Estilo dos links do menu */
 .menu-navegacao a {
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
-  color: #ffffff !important;
   transition: opacity 0.2s ease;
 }
 
-/* Efeito ao passar o mouse nos links */
 .menu-navegacao a:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
-/* FORMATAÇÃO DA LOGO EM CÍRCULO PEQUENO */
 .item-logo .logo {
-  width: 70px;          /* Define o tamanho da largura da bolinha */
-  height: 70px;         /* Define o tamanho da altura (precisa ser igual à largura) */
-  border-radius: 50%;   /* Corta a imagem perfeitamente em formato de círculo */
-  object-fit: cover;    /* Garante que a imagem se ajuste no círculo sem ficar esticada */
-  border: 2px solid #ffffff; /* Adiciona uma bordinha branca opcional para destacar a logo */
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
   display: block;
 }
 
-
-/* ANIMAÇÕES HORIZONTAIS ULTRA LEVES (Sem travamento) */
-@keyframes moverOndaDireita {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+main, section:first-of-type, #home {
+  padding-top: 120px !important;
 }
+/* ==========================================================================
+   4. AJUSTES PARA CELULAR
+   ========================================================================== */
+@media (max-width: 768px) {
+  .menu-navegacao ul {
+    flex-wrap: wrap;          /* deixa os itens descerem para a linha de baixo */
+    gap: 12px 20px;           /* 12px entre linhas, 20px entre itens */
+    padding: 10px 15px;
+    margin: 0;
+  }
 
-@keyframes moverOndaEsquerda {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
+  .menu-navegacao a {
+    font-size: 14px;
+  }
 
-/* Força as suas seções atuais de conteúdo a ficarem transparentes */
-header, section, main, footer, div:not(.oceano-caixa):not(.ondas-wrapper):not(.wave) {
-  background-color: transparent !important;
-}
-/* Força as suas seções atuais a ficarem sem fundo branco */
-header, section, main, footer, div:not(.oceano-caixa):not(.ondas-wrapper):not(.wave) {
-  background: transparent !important;
-}
+  .item-logo .logo {
+    width: 50px;
+    height: 50px;
+  }
 
+  /* O menu fica mais alto com 2 linhas, então o conteúdo precisa descer mais */
+  main, section:first-of-type, #home {
+    padding-top: 150px !important;
+  }
+}
