@@ -470,3 +470,69 @@ main, section:first-of-type, #home {
     border-radius: 16px;
   }
 }
+/* ==========================================================================
+   8. RODAPÉ
+   ========================================================================== */
+.rodape {
+  /* faixa azul escura translúcida, igual à da fachada */
+  background-color: rgba(2, 26, 58, 0.65) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 40px 20px 25px;
+  text-align: center;
+}
+
+.rodape-conteudo {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;            /* no celular os blocos descem um embaixo do outro */
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
+
+.rodape-bloco h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.rodape-bloco p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.redes_sociais {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.redes_sociais a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50px;        /* formato de pílula, igual ao menu */
+  transition: background-color 0.2s ease;
+}
+
+.redes_sociais a:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.direitos {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .rodape {
+    padding-bottom: 90px;     /* espaço para o botão do WhatsApp não cobrir o copyright */
+  }
+}
