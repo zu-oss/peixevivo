@@ -209,56 +209,30 @@ main, section:first-of-type, #home {
 }
 
 /* ==========================================================================
-   5. BOTÃO FLUTUANTE DO WHATSAPP
+   5. BOTÃO FLUTUANTE DO WHATSAPP (SÓ O ÍCONE)
    ========================================================================== */
 .btn-whatsapp {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  width: 55px;
+  height: 55px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;          /* menor que antes (12px 20px) */
+  align-items: center;       /* centraliza o ícone na vertical */
+  justify-content: center;   /* e na horizontal */
   background-color: #25d366;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;             /* menor que antes (16px) */
+  border-radius: 50%;        /* deixa o botão redondo */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   z-index: 1000;
   transition: transform 0.2s ease;
 }
 
 .btn-whatsapp:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .icone-whatsapp {
-  width: 24px;                 /* menor que antes (28px) */
-  height: 24px;
-  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
   display: block;
-}
-
-/* No celular: só o ícone, num círculo */
-@media (max-width: 768px) {
-  .btn-whatsapp {
-    bottom: 15px;
-    right: 15px;
-    width: 52px;
-    height: 52px;
-    padding: 0;                /* sem espaço extra, o círculo fica certinho */
-    gap: 0;
-    border-radius: 50%;
-  }
-
-  .texto-whatsapp {
-    display: none;             /* esconde o texto */
-  }
-
-  .icone-whatsapp {
-    width: 30px;               /* ícone um pouco maior, já que está sozinho */
-    height: 30px;
-  }
 }
