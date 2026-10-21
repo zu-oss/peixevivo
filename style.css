@@ -233,39 +233,101 @@ main, section:first-of-type, #home {
 }
 
 /* ==========================================================================
-   4. AJUSTES PARA CELULAR
+   4. MENU NO CELULAR (LOGO CENTRAL + BOTÃO HAMBÚRGUER)
    ========================================================================== */
+
+/* No computador o botão não aparece */
+.botao-menu {
+  display: none;
+}
+
 @media (max-width: 768px) {
   header {
     top: 8px;
     width: calc(100% - 16px);
-    border-radius: 28px;             /* com 2 linhas, a pílula total ficaria estranha */
+    border-radius: 28px;
   }
 
+  .menu-navegacao {
+    position: relative;        /* o botão se posiciona em relação ao menu */
+  }
+
+  /* Lista vira uma coluna: logo em cima, links embaixo */
   .menu-navegacao ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
     padding: 10px 15px;
   }
 
-  .menu-navegacao a {
-    font-size: 14px;
-  }
-
   .item-logo {
-    order: -1;
-    flex-basis: 100%;
+    order: -1;                 /* logo sempre em primeiro */
   }
 
-  .item-logo .logo {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto;
+  /* Links escondidos até abrir o menu */
+  .menu-navegacao li:not(.item-logo) {
+    display: none;
   }
 
+  .menu-navegacao.aberto li:not(.item-logo) {
+    display: block;
+  }
+
+  .menu-navegacao.aberto ul {
+    padding-bottom: 20px;
+  }
+
+  .menu-navegacao a {
+    font-size: 16px;           /* um pouco maior, mais fácil de tocar */
+  }
+
+  /* O botão das três barrinhas, no canto direito */
+  .botao-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .botao-menu span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Quando aberto, as barrinhas viram um X */
+  .botao-menu[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .botao-menu[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .botao-menu[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Com o menu fechado ele é bem mais baixo, então o espaço no topo diminui */
   main, section:first-of-type, #home {
-    padding-top: 150px !important;
+    padding-top: 110px !important;
+  }
+
+  section {
+    scroll-margin-top: 90px;
   }
 }
 /* ==========================================================================
