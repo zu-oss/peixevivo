@@ -186,15 +186,48 @@ header {
   width: 100%;
 }
 
-.item-logo .logo {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ffffff;
+/* ==========================================================================
+   LOGO SAINDO DO CÍRCULO
+   ========================================================================== */
+.item-logo a {
+  --tam: 56px;                 /* tamanho do círculo: mude aqui */
+  position: relative;
   display: block;
+  width: var(--tam);
+  height: var(--tam);
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  background: radial-gradient(circle at 50% 30%, #5ec2ec, #0a4f8a);  /* cor do círculo */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
+.item-logo .logo {
+  position: absolute;
+  bottom: -2px;                /* alinha com o fundo do círculo (compensa a borda) */
+  left: 0;
+  right: 0;
+  margin: 0 auto;              /* centraliza na horizontal */
+  height: 135%;                /* maior que o círculo: o topo "sai" para fora */
+  width: auto;
+  border: none;
+  border-radius: 0;
+  object-fit: contain;
+  transform-origin: 50% 100%;
+  transition: transform 0.3s ease;
+}
+
+.item-logo a:hover .logo {
+  transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+  .item-logo a {
+    --tam: 48px;
+  }
+}
 main, section:first-of-type, #home {
   padding-top: 120px !important;
 }
