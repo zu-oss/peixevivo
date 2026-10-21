@@ -131,16 +131,22 @@ header, main, section, footer, div:not(.oceano-caixa):not(.ondas-wrapper):not(.w
 }
 
 /* ==========================================================================
-   3. MENU FIXO NO TOPO DO SITE
+   3. MENU FLUTUANTE NO TOPO DO SITE
    ========================================================================== */
 header {
   position: fixed;
-  top: 0;
+  top: 12px;                         /* desgruda do topo da tela */
   left: 0;
-  width: 100%;
+  right: 0;
+  width: calc(100% - 24px);          /* deixa 12px de espaço de cada lado */
+  max-width: 1000px;                 /* em telas grandes não estica demais */
+  margin: 0 auto;                    /* centraliza */
   z-index: 999;
+  border-radius: 50px;               /* formato de pílula */
   background-color: rgba(3, 4, 94, 0.45) !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);   /* borda fina de vidro */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
 .menu-navegacao ul {
@@ -149,24 +155,40 @@ header {
   align-items: center;
   list-style: none;
   gap: 35px;
-  padding: 15px 0;
-  width: 100%;
+  padding: 8px 25px;
+  margin: 0;
+  width: auto;
 }
 
 .menu-navegacao a {
+  position: relative;
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
-  transition: opacity 0.2s ease;
+  letter-spacing: 0.5px;
+  padding: 6px 0;
 }
 
-.menu-navegacao a:hover {
-  opacity: 0.7;
+/* Linha que cresce embaixo do link ao passar o mouse (não aparece na logo) */
+.menu-navegacao li:not(.item-logo) a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #5ec2ec;         /* azul claro das ondas */
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.menu-navegacao li:not(.item-logo) a:hover::after {
+  width: 100%;
 }
 
 .item-logo .logo {
-  width: 65px;
-  height: 65px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #ffffff;
@@ -176,16 +198,22 @@ header {
 main, section:first-of-type, #home {
   padding-top: 120px !important;
 }
+
 /* ==========================================================================
    4. AJUSTES PARA CELULAR
    ========================================================================== */
 @media (max-width: 768px) {
+  header {
+    top: 8px;
+    width: calc(100% - 16px);
+    border-radius: 28px;             /* com 2 linhas, a pílula total ficaria estranha */
+  }
+
   .menu-navegacao ul {
     flex-wrap: wrap;
-    justify-content: center;  /* centraliza os links da linha de baixo */
-    gap: 12px 20px;
+    justify-content: center;
+    gap: 8px 20px;
     padding: 10px 15px;
-    margin: 0;
   }
 
   .menu-navegacao a {
@@ -198,8 +226,8 @@ main, section:first-of-type, #home {
   }
 
   .item-logo .logo {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     margin: 0 auto;
   }
 
@@ -207,7 +235,6 @@ main, section:first-of-type, #home {
     padding-top: 150px !important;
   }
 }
-
 /* ==========================================================================
    5. BOTÃO FLUTUANTE DO WHATSAPP (SÓ O ÍCONE)
    ========================================================================== */
