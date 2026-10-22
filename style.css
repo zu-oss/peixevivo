@@ -947,3 +947,102 @@ main, section:first-of-type, #home {
     animation-name: pulsa-mobile;
   }
 }
+/* ==========================================================================
+   14. SEÇÃO CHOPERIA (FOTO À DIREITA)
+   ========================================================================== */
+#choperia {
+  padding: 60px 20px;
+}
+
+#choperia h2 {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin: 0 0 30px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Duas colunas: texto e lista à esquerda (maior), foto alta à direita */
+.choperia-conteudo {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.choperia-esquerda {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Caixa de funcionamento */
+.texto_bar {
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(6px);
+}
+
+.texto_bar h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.texto_bar p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Lista de itens */
+.menu_cardapio_bar {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prato-texto h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.prato-texto p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* O primeiro item (chope) em destaque: foto maior e borda mais clara */
+.prato-destaque {
+  border-color: rgba(94, 194, 236, 0.8);
+}
+
+.prato-destaque .prato-foto {
+  width: 110px;
+  height: 110px;
+}
+
+/* Celular: a foto sobe para o topo e tudo fica em uma coluna */
+@media (max-width: 768px) {
+  #choperia {
+    padding: 40px 15px;
+  }
+
+  .choperia-conteudo {
+    grid-template-columns: 1fr;
+  }
+
+  .choperia-conteudo .cardapio-destaque {
+    order: -1;               /* a foto aparece antes do texto */
+  }
+
+  .prato-destaque .prato-foto {
+    width: 90px;
+    height: 90px;
+  }
+}
