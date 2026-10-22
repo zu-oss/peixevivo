@@ -417,7 +417,8 @@ main, section:first-of-type, #home {
 }
 
 /* A borda ondulada no topo da faixa (mesma técnica das ondas do fundo) */
-#fachada::before {
+#fachada::before,
+#redes_social::before {
   content: "";
   position: absolute;
   left: 0;
@@ -605,8 +606,11 @@ main, section:first-of-type, #home {
    10. SEÇÃO REDES SOCIAIS (CARROSSEL)
    ========================================================================== */
 #redes_social {
-  padding: 60px 0;
+  position: relative;          /* a onda se posiciona em relação à seção */
+  margin-top: 60px;            /* espaço onde a onda aparece */
+  padding: 40px 0 70px;
   text-align: center;
+  background-color: rgba(2, 26, 58, 0.55) !important;
 }
 
 #redes_social h2 {
@@ -653,6 +657,7 @@ main, section:first-of-type, #home {
 
 /* No computador: vira uma grade, sem precisar arrastar */
 @media (min-width: 769px) {
+   
   .carrossel {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
