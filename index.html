@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Peixe-Vivo - Restaurante e Chopeira"> <!-- é para otimizar localização em sites de pesquisa --> 
         <meta name="keywords" content="Restaurante, Chopeira, peixe frito, Peixe-Vivo, chop, chopp, antartica, almoço, jantar, deliver, icem, fronteira, barragem marimbondo,menu, frutos do mar, viagem, rodovia br-153">
-        <meta name="author" content="Group Zeta Devs"> <!--o nome do grupo que esta fazendo o site , perguntar para o lucimar dps-->
+        <meta name="author" content="Group Zets Web Development"> 
         <meta property="og:title" content="Restaurante e Choperia Peixe-Vivo">
         <meta property="og:description" content="Peixe frito, chope gelado e vista para o Rio Grande.">
         <meta property="og:image" content="fachada.png">
@@ -72,6 +72,59 @@
     <figcaption>Venha nos visitar!</figcaption>
   </figure>
 </section>
+
+
+
+<section class="galeria-ambiente">
+  <h2 class="galeria-titulo">Conheça a nossa atmosfera</h2>
+  <p class="galeria-subtitulo">Onde a tradição de estrada se encontra com a beleza do Rio Grande</p>
+
+  <div class="grid-ambiente">
+    
+    <!-- Imagem 1: A Varanda Transatlântico -->
+    <div class="card-foto">
+      <img src="caminho-da-sua-foto-varanda.jpg" alt="Famosa varanda do Peixe-Vivo">
+      <div class="legenda-vintage">
+        <h3>A Famosa Varanda</h3>
+        <p>A sensação única de almoçar a bordo de um transatlântico.</p>
+      </div>
+    </div>
+
+    <!-- Imagem 2: Vista da Usina -->
+    <div class="card-foto">
+      <img src="caminho-da-sua-foto-usina.jpg" alt="Vista da Usina de Marimbondo">
+      <div class="legenda-vintage">
+        <h3>Vista Monumental</h3>
+        <p>Contemple a Usina de Marimbondo de camarote.</p>
+      </div>
+    </div>
+
+    <!-- Imagem 3: Choperia e Deck -->
+    <div class="card-foto">
+      <img src="caminho-da-sua-foto-deck.jpg" alt="Choperia Peixe-Vivo">
+      <div class="legenda-vintage">
+        <h3>O Deck da Choperia</h3>
+        <p>O ponto de encontro com o Chopp Antarctica mais gelado.</p>
+      </div>
+    </div>
+
+    <!-- Imagem 4: Fachada de Estrada -->
+    <div class="card-foto">
+      <img src="caminho-da-sua-foto-fachada.jpg" alt="Fachada na BR-153">
+      <div class="legenda-vintage">
+        <h3>Parada na BR-153</h3>
+        <p>Há mais de 70 anos acolhendo viajantes e boas histórias.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
 
   <section id="especial_prato_promo">
   <span class="selo-promo">Promoção</span>
@@ -142,71 +195,201 @@
 </section>
 
 <section id="choperia">
-  <h2>Chopeira Peixe-Vivo</h2>
 
-  <div class="choperia-conteudo">
+  <div class="choperia-capa">
+    <img src="img/choperia.jpg"
+         alt="Balcão da Chopeira Peixe-Vivo com dois chopes sendo tirados"
+         loading="lazy">
+    <h2>Chopeira Peixe-Vivo</h2>
+  </div>
 
-    <div class="choperia-esquerda">
+  <div class="choperia-menu">
 
-      <div class="texto_bar">
-        <h3>Funcionamento</h3>
-        <p>Texto curto de descrição + horário de funcionamento do bar, happy hour, etc.</p>
+    <!-- Bloco 1 --> <!-- sessão do menu de cervejas -->
+    <details class="menu-acordeao" open>
+      <summary>Chopes e cervejas</summary>
+      <div class="menu-conteudo">
+           
+      <ul class="itens-menu">
+        <li class="item-menu"> <img src="img/chopes/chope1.png" alt="Nome do chope" loading="lazy"> <div class="item-texto"> <strong>Chopp Claro Antarctica</strong> <p> Tulipa ------ R$ 13,90</p> </div> </li>
+        <li class="item-menu"> <img src="img/chopes/chope2.png" alt="Nome do chope" loading="lazy"><div class="item-texto"> <strong>Cerveja Skol | Brahma | Antarctica</strong> <p>Garrafa ------ R$ 13,90</p> </div> </li>
+        <li class="item-menu"> <img src="img/chopes/chope3.png" alt="Nome do chope" loading="lazy"><div class="item-texto"> <strong>Cerveja Sub-zero | Original | Bohemia </strong> <p>Garrafa ------ R$ 16,90</p> </div> </li>
+        <li class="item-menu"> <img src="img/chopes/chope4.png" alt="Nome do chope" loading="lazy"><div class="item-texto"> <strong>Cerveja Heineken</strong> <p>Garrafa ------ R$ 19,90</p> </div> </li>
+        <li class="item-menu"> <img src="img/chopes/chope4.png" alt="Nome do chope" loading="lazy"><div class="item-texto"> <strong>Cerveja Heineken</strong> <p>Long Neck ------ R$ 11,90</p> </div> </li>
+        <li class="item-menu"> <img src="img/chopes/chope5.png" alt="Nome do chope" loading="lazy"><div class="item-texto"> <strong>Cerveja Skol | Brahma</strong> <p>Lata ------ R$ 7,50</p> </div> </li>
+        <li class="item-menu"> <img src="img/chopes/chope6.png" alt="Nome do chope" loading="lazy"><div class="item-texto"> <strong>Cerveja Heineken | Zero </strong> <p>Lata ------ R$ 11,90</p> </div> </li>
+       
+      </ul>
+    </div>
+    </details>
+
+    
+    <!-- Menu 2: Drinks -->
+    <details class="menu-acordeao">
+      <summary>Drinks</summary>
+      <div class="menu-conteudo">
+
+        <ul class="itens-menu">
+          <li class="item-menu"> <img src="img/drinks/drinks1.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Caipiroska Smirnoff | Orloff</strong> <p>------ R$ 30,00</p> </div> </li>
+          <li class="item-menu"> <img src="img/drinks/drinks2.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Caipirinha Pinga</strong> <p>------ R$ 25,00</p> </div> </li>
+          <li class="item-menu"> <img src="img/drinks/drinks3.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Martini</strong> <p>------ R$ 20,00</p> </div> </li>
+          <li class="item-menu"> <img src="img/drinks/drinks4.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Campari</strong> <p>------ R$ 22,00</p> </div> </li>
+          <li class="item-menu"> <img src="img/drinks/drinks5.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Whisky Nacionalizado</strong> <p>------ R$ 25,00</p> </div> </li>
+          <li class="item-menu"> <img src="img/drinks/drinks5.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Whisky Nacional</strong> <p>------ R$ 20,00</p> </div> </li>
+          <li class="item-menu"> <img src="img/drinks/drinks6.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Whisky Importado Chivas | Black</strong> <p>------ R$ 49,00</p> </div> </li>
+          <li class="item-menu"> <img src="img/drinks/drinks7.png" alt="Nome do drink" loading="lazy"> <div class="item-texto"> <strong>Whisky Importado Red Label | JB</strong> <p>------ R$ 36,00</p> </div> </li>
+        </ul>
+      </div>
+    </details>
+    <!-- Menu 3: Licores -->
+    <details class="menu-acordeao">
+      <summary>Licores</summary>
+      <div class="menu-conteudo">
+
+        <ul class="itens-menu">
+          <li class="item-menu"> <img src="img/licores/licor1.webp" alt="Nome do licor" loading="lazy"> <div class="item-texto"> <strong>Licor Nacional</strong> <p>------ R$ 9,50</p> </div> </li>
+          <li class="item-menu"> <img src="img/licores/licor1.webp" alt="Nome do licor" loading="lazy"> <div class="item-texto"> <strong>Licor Importado</strong> <p>------ R$ 16,50</p> </div> </li>
+         
+        </ul>
+      </div>
+    </details>
+    <!-- Menu 4: Vinhos -->
+    <details class="menu-acordeao">
+      <summary>Vinhos</summary> 
+      <div class="menu-conteudo">
+
+      <ul class="itens-menu">
+        <li class="item-menu"> <img src="img/vinhos/vinho1.png" alt="Nome do vinho" loading="lazy"> <div class="item-texto"> <strong>Confira nossa cartela de vinhos com nossos garçons</strong> </p> </div> </li>
+      </ul>
+    </div>
+    </details>
+
+    <!-- Menu 5: Porções -->
+    <details class="menu-acordeao">
+      <summary>Porções</summary>
+      <div class="menu-conteudo">      
+    
+      <h4>Porções frias</h4>
+        
+      <div class="tira-fotos">
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto:Musarela em cubos">
+        <img src="img/porcoes/fria1.jpg" alt="Foto exemplo de mussarela em cubos" loading="lazy"></a> </label> 
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Presunto em cubos">
+        <img src="img/porcoes/fria2.jpg" alt="Foto exemplo de presunto em cubos" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Salame em fatias">
+        <img src="img/porcoes/fria3.jpg" alt="Foto exemplo de salame em fatias" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Tábua de frios">
+        <img src="img/porcoes/fria4.jpg" alt="Foto exemplo de Tábua de Frios" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Palmito, tomate e azeitonas">
+        <img src="img/porcoes/fria5.jpg" alt="Foto exemplo de palmito, tomate e azeitonas" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Azeitonas">
+        <img src="img/porcoes/fria6.jpg" alt="Foto exemplo de azeitonas" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Palmitos">
+        <img src="img/porcoes/fria7.jpg" alt="Foto exemplo de palmitos" loading="lazy"></a> </label>
+      <!-- uma miniatura <a> para cada foto -->
+      </div>
+    
+
+      <ul class="itens-menu">
+        <li class="item-menu"> <strong>Azeitonas Pretas ou Verdes</strong> <p>------ R$ 40,00</p> </li> 
+        <li class="item-menu"> <strong>Presunto</strong> <p>------ R$ 40,00</p> </li> 
+        <li class="item-menu"> <strong>Mussarela</strong> <p>------ R$ 45,00</p> </li> 
+        <li class="item-menu"> <strong>Salame</strong> <p>------ R$ 59,00</p> </li> 
+        <li class="item-menu"> <strong>Palmito, Tomate, Azeitonas</strong> <p>------ R$ 75,00</p> </li> 
+        <li class="item-menu"> <strong>Tábua de Frios</strong> <p>------ R$ 220,00</p> </li> 
+        <li class="item-menu"> <strong>Meia Tábua de Frios</strong> <p>------ R$ 140,00</p> </li> 
+      </ul>
+      
+
+      <h4>Porções quentes</h4>
+
+      <div class="tira-fotos">
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Tilápia com molho tártaro">
+        <img src="img/porcoes/quente1.jpg" alt="Foto da porção de tilápia com molho tártaro" loading="lazy"></a> </label> 
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Porquinho e batatas fritas">
+        <img src="img/porcoes/quente2.jpg" alt="Foto porção de porquinho com batatas fritas" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Batatas fritas">
+        <img src="img/porcoes/quente3.jpg" alt="Foto da porção de batatas fritas" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Camarao à dorê com molho tártaro">
+        <img src="img/porcoes/quente4.jpg" alt="Foto da porção de camarão com molho tártaro" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Frango à passarinho e batatas fritas">
+        <img src="img/porcoes/quente5.jpg" alt="Foto da porção de frango à passarinho e batatas fritas" loading="lazy"></a> </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Filé mignon com fritas">
+        <img src="img/porcoes/quente6.jpg" alt="Foto da porção de filé mignon com fritas" loading="lazy"></a> </label>
+      <!-- uma miniatura <a> para cada foto -->
       </div>
 
-      <ul class="menu_cardapio_bar">
 
-        <li class="prato prato-destaque">
-          <img class="prato-foto" src="img/cardapio/bebida1.jpg"
-               alt="Chope principal da casa" width="160" height="160" loading="lazy">
-          <div class="prato-texto">
-            <h3>Caipiroska de morango</h3>
-            <p>Descrição do chope.</p>
-          </div>
-        </li>
 
-        <li class="prato">
-          <img class="prato-foto" src="img/cardapio/bebida2.jpg"
-               alt="Nome do drink" width="160" height="160" loading="lazy">
-          <div class="prato-texto">
-            <h3>Caipirinha de Limão</h3>
-            <p>Descrição do drink.</p>
-          </div>
-        </li>
+      <ul class="itens-menu">
+        <li class="item-menu"> <strong>Tilápia com Molho Tártaro</strong> <p>------ R$ 75,00</p> </li>
+        <li class="item-menu"> <strong>Peixe à Palito com Molho de Tártaro</strong> <p>Inteira ------ R$ 75,00 <br> Meia------ R$ 48,00</p> </li>
+        <li class="item-menu"> <strong>Peixe em Fatias com Molho Tártaro</strong> <p>Inteira ------ R$ 75,00<br> Meia------ R$ 48,00</p> </li>
+        <li class="item-menu"> <strong>Camarão à Dorê com Molho Tártaro</strong> <p>------ R$ 198,00</p> </li>
+        <li class="item-menu"> <strong>Lambari com Molho Tártaro</strong> <p>------ R$ 48,00</p> </li>
+        <li class="item-menu"> <strong>Porquinho com Molho Tártaro</strong> <p>------ R$ 69,00</p> </li>
+        <li class="item-menu"> <strong>Frango à Passarinho</strong> <p>Coxinha da Asa ------ R$ 46,00</p> </li>
+        <li class="item-menu"> <strong>Filé Mignon com Fritas</strong> <p>------ R$ 86,00</p> </li>
+        <li class="item-menu"> <strong>Contra Filé com Fritas</strong> <p>------ R$ 79,00</p> </li>
+        <li class="item-menu"> <strong>Calabresa</strong> <p>------ R$ 39,00</p> </li>
+        <li class="item-menu"> <strong>Batata Frita</strong> <p>Inteira ------ R$ 29,00<br>Meia------ R$ 19,00</p> </li>
 
-     
+
       </ul>
-
     </div>
-
-    <figure class="cardapio-destaque">
-      <img src="img/fotodobar.jpg"
-           alt="Área da Chopeira Peixe-Vivo"
-           loading="lazy">
-    </figure>
+    </details>
 
   </div>
 </section>
 
-        <section id="historia">
+<!-- seção sobre a história do restaurante, antes ia ter foto da equipe mas não foi possivel pegar com cliente a foto a tempo -->
+<section id="historia">
   <div class="historia-conteudo">
-    <h2>Sobre nós</h2>
 
-    <div class="bloco-historia">
-      <h3>Nossa equipe</h3>
-      <p>Texto contando sobre a equipe.</p>
-      <img src="fotoequipe.png"
-           alt="Foto da equipe do Peixe-Vivo"
-           class="equipe"
-           loading="lazy">
+    <h2>Nossa história</h2>
+    <p class="historia-subtitulo">Das belas paisagens, ao som das cachoeiras de águas límpidas do Rio Grande.</p>
+
+    <div class="bloco-historia historia-texto">
+
+      <p>Aproveitando o progresso que levaria para o interior do Brasil com a chegada da rodovia <strong>BR-153 (Transbrasiliana)</strong>, o grande investidor Maurício Goulart construiu, na margem esquerda do Rio Grande, no município de Icém, um grande restaurante. O local foi estrategicamente escolhido por possuir uma das mais belas maravilhas do mundo na época: o Canal do Ferrador e as Cachoeiras de Marimbondo.</p>
+
+      <p>O restaurante recebeu o nome sugestivo de <strong>Peixe-Vivo</strong>. A inauguração contou com uma honra histórica memorável: a presença do então Presidente da República, <strong>Dr. Juscelino Kubitschek de Oliveira</strong>, grande amigo do fundador.</p>
+
+      <figure class="historia-citacao">
+        <blockquote>
+          <p>“Agora entendo a importância do Peixe-Vivo sair para fora d’água fria!”</p>
+        </blockquote>
+        <figcaption>— Presidente Juscelino Kubitschek, ao saborear a gostosa peixada da casa (lembrando de sua música predileta).</figcaption>
+      </figure>
+
+      <p>Essa célebre frase do presidente até hoje é motivo de preocupação e honra para nós. Ela nos motiva a manter os mais finos padrões de qualidade na cozinha, no atendimento acolhedor e na grande variedade de pratos à base de peixes frescos.</p>
+
+      <p>No ano de 1981, o Peixe-Vivo foi adquirido pelos amigos <strong>Joaquim e Manoel</strong>, que deram ao restaurante sua nova e icônica forma arquitetônica. Com a cheia das águas do Rio Grande, a famosa varanda deixa no cliente a nítida e mágica impressão de estar almoçando a bordo de um grande transatlântico.</p>
+
+      <p>Tendo recebido ao longo das décadas as mais expressivas personalidades políticas, artísticas e empresariais do país, o Peixe-Vivo consolida-se hoje como a mais bem montada choperia da região, servindo o tradicional e trincando <strong>Chopp Antarctica</strong>.</p>
+
     </div>
 
-    <div class="bloco-historia">
-      <h3>Nossa história</h3>
-      <p>História do lugar.</p>
-    </div>
+    <p class="historia-facilidades">
+      <span aria-hidden="true">📍</span> Um ponto de encontro com amplo estacionamento, playground para as crianças e o cenário monumental da Usina de Marimbondo.
+    </p>
+
   </div>
 </section>
-     
+     <!-- seção de eventos,foi mudada para sessão de  -->
             <section id="eventos">
   <h2>Próximos eventos</h2>
 
@@ -214,9 +397,7 @@
 
     <!-- Quando tiver a imagem do evento, coloque o arquivo na pasta e confira o nome abaixo -->
     <figure class="evento-foto">
-      <img src="img/evento.jpg"
-           alt="Descreva aqui o cartaz ou a foto do evento"
-           loading="lazy">
+      <img src="img/evento.jpg"  alt="Descreva aqui o cartaz ou a foto do evento"  loading="lazy">
       <figcaption>Nome do evento</figcaption>
     </figure>
 
