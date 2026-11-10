@@ -1,6 +1,10 @@
 /* ==========================================================================
    1. CONFIGURAÇÕES GERAIS E CORES DOS TEXTOS
    ========================================================================== */
+
+   :root {
+  --onda: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C200,20 400,20 600,60 S1000,100 1200,60 V120 H0 Z'/%3E%3C/svg%3E");
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -947,110 +951,355 @@ main, section:first-of-type, #home {
     animation-name: pulsa-mobile;
   }
 }
+
 /* ==========================================================================
-   14. SEÇÃO CHOPERIA (FOTO À DIREITA)
+   14. SEÇÃO CHOPERIA
    ========================================================================== */
+
 #choperia {
-  padding: 60px 20px;
+  padding: 0 0 60px;
 }
 
-#choperia h2 {
+/* ---------- Foto de ponta a ponta, sem escurecer e sem corte ---------- */
+.choperia-capa {
+  position: relative;
+  margin-bottom: 55px;
+}
+
+.choperia-capa img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.choperia-capa h2 {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  width: max-content;
+  max-width: 92%;
+  margin: 0;
+  padding: 12px 34px;
   text-align: center;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  margin: 0 0 30px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  font-size: clamp(1.3rem, 4.5vw, 2.4rem);
+  border-radius: 50px;
+  background: rgba(2, 26, 58, 0.80);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
 }
 
-/* Duas colunas: texto e lista à esquerda (maior), foto alta à direita */
-.choperia-conteudo {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.choperia-esquerda {
+/* ---------- Os menus: um embaixo do outro, centralizados ---------- */
+.choperia-menu {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Caixa de funcionamento */
-.texto_bar {
-  padding: 18px 20px;
-  border-radius: 16px;
+.menu-acordeao {
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.10);
   border: 1px solid rgba(255, 255, 255, 0.30);
   backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+  scroll-margin-top: 100px;
+  /* SEM overflow: hidden aqui, senão a foto ampliada seria cortada */
 }
 
-.texto_bar h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
+/* Com uma foto ampliada, o menu sobe na frente dos menus de baixo */
+.menu-acordeao:has(.foto-mini input:checked) {
+  z-index: 30;
 }
 
-.texto_bar p {
-  margin: 0;
-  line-height: 1.5;
+/* ---------- O nome do menu (o que a pessoa clica) ---------- */
+.menu-acordeao summary {
+  position: relative;            /* a onda do hover se posiciona dentro dele */
+  isolation: isolate;            /* a onda fica atrás do texto */
+  overflow: hidden;              /* a onda não sai do retângulo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;              /* tira a setinha padrão do navegador */
+  font-size: 20px;
+  font-weight: bold;
 }
 
-/* Lista de itens */
-.menu_cardapio_bar {
+.menu-acordeao summary::-webkit-details-marker {
+  display: none;                 /* o mesmo, para o Safari */
+}
+
+.menu-acordeao summary:focus-visible {
+  outline: 2px solid #5ec2ec;
+  outline-offset: -4px;
+}
+
+/* Setinha própria: aponta para baixo e gira quando abre */
+.menu-acordeao summary::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  margin: -4px 0 0 14px;
+  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease, margin 0.3s ease;
+}
+
+.menu-acordeao[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+
+/* Aberto: só os cantos de cima ficam arredondados, e uma linha separa do conteúdo */
+.menu-acordeao[open] summary {
+  border-radius: 20px 20px 0 0;
+  border-bottom: 2px solid #5ec2ec;
+}
+
+/* ---------- Conteúdo do menu (aparece com um fade suave) ---------- */
+.menu-conteudo {
+  padding: 18px 22px 22px;
+}
+
+.menu-acordeao[open] .menu-conteudo {
+  animation: aparece 0.35s ease;
+}
+
+@keyframes aparece {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtítulos (Porções frias / Porções quentes) em etiqueta */
+.menu-conteudo h4 {
+  display: inline-block;
+  margin: 22px 0 12px;
+  padding: 5px 16px;
+  border-radius: 50px;
+  background: #f0bd4e;
+  color: #021a3a !important;     /* vence a regra que deixa todo h4 branco */
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu-conteudo h4:first-child {
+  margin-top: 0;
+}
+
+/* ---------- Itens do menu (PNG ao lado do texto) ---------- */
+.itens-menu {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
 
-.prato-texto h3 {
-  margin: 0 0 4px;
-  font-size: 18px;
+.item-menu {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 16px;
+  border-radius: 14px;
 }
 
-.prato-texto p {
-  margin: 0;
+.item-menu img {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;                /* o PNG não é espremido pelo texto */
+  object-fit: contain;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));
+}
+
+.item-texto strong {
+  display: block;
+  font-size: 17px;
+}
+
+.item-texto p {
+  margin: 3px 0 0;
   font-size: 14px;
   line-height: 1.4;
   opacity: 0.9;
 }
 
-/* O primeiro item (chope) em destaque: foto maior e borda mais clara */
-.prato-destaque {
-  border-color: rgba(94, 194, 236, 0.8);
+/* >>> Se você criou regras próprias para o preço dos itens
+       (a linha pontilhada e o "R$"), cole elas aqui <<< */
+
+/* ---------- Efeito de onda no hover: a "água" sobe e a borda se move ---------- */
+.menu-acordeao summary::before,
+.item-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;                          /* fica atrás do texto e do PNG */
+  background: rgba(94, 194, 236, 0.28); /* cor da água: mude aqui */
+  transform: translateY(100%);          /* escondida embaixo */
+  transition: transform 0.5s ease;
+  pointer-events: none;
+
+  -webkit-mask-image: var(--onda), linear-gradient(#000, #000);
+  mask-image: var(--onda), linear-gradient(#000, #000);
+  -webkit-mask-size: 120px 14px, 100% calc(100% - 13px);
+  mask-size: 120px 14px, 100% calc(100% - 13px);
+  -webkit-mask-position: 0 0, 0 13px;
+  mask-position: 0 0, 0 13px;
+  -webkit-mask-repeat: repeat-x, no-repeat;
+  mask-repeat: repeat-x, no-repeat;
 }
 
-.prato-destaque .prato-foto {
-  width: 110px;
-  height: 110px;
+.menu-acordeao summary:hover::before,
+.menu-acordeao summary:focus-visible::before,
+.item-menu:hover::before {
+  transform: translateY(0);             /* a água sobe */
+  animation: ondaMover 1.6s linear infinite;
 }
 
-/* Celular: a foto sobe para o topo e tudo fica em uma coluna */
+@keyframes ondaMover {
+  from { -webkit-mask-position: 0 0, 0 13px;     mask-position: 0 0, 0 13px; }
+  to   { -webkit-mask-position: 120px 0, 0 13px; mask-position: 120px 0, 0 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-acordeao summary:hover::before,
+  .item-menu:hover::before {
+    animation: none;
+  }
+}
+
+/* ---------- Tira de fotos: só as imagens, que ampliam no mesmo lugar ---------- */
+.tira-fotos {
+  position: relative;            /* a foto ampliada se posiciona em relação à tira */
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  overflow: visible;             /* sem barra de rolagem */
+}
+
+.foto-mini {
+  flex: 1 1 0;                   /* as fotos dividem a largura igualmente */
+  max-width: 130px;
+  aspect-ratio: 4 / 3;
+  cursor: zoom-in;
+}
+
+/* O checkbox fica invisível: é ele que "liga" a ampliação */
+.foto-mini input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.foto-mini img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* a miniatura recorta sem esticar */
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.foto-mini input:not(:checked) + img:hover {
+  transform: scale(1.05);
+}
+
+.foto-mini input:focus-visible + img {
+  outline: 2px solid #5ec2ec;    /* anel de foco para quem usa o teclado */
+  outline-offset: 3px;
+}
+
+/* A foto ampliada: sai do lugar da miniatura e cobre o que está embaixo */
+.foto-mini input:checked + img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  width: min(100%, 420px);       /* até 420px, ou a largura toda da tira no celular */
+  height: auto;                  /* mostra a foto inteira, na proporção original */
+  margin-inline: 0 auto;         /* primeira foto: alinhada à esquerda */
+  object-fit: contain;
+  border: 2px solid #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
+  cursor: zoom-out;
+  transform-origin: top left;
+  animation: expande 0.3s ease;
+}
+
+/* Fotos do meio: a ampliada fica centralizada */
+.foto-mini:not(:first-child):not(:last-child) input:checked + img {
+  margin-inline: auto;
+  transform-origin: top center;
+}
+
+/* Última foto: a ampliada fica alinhada à direita */
+.foto-mini:last-child:not(:first-child) input:checked + img {
+  margin-inline: auto 0;
+  transform-origin: top right;
+}
+
+@keyframes expande {
+  from { opacity: 0.4; transform: scale(0.3); }
+  to   { opacity: 1;   transform: scale(1); }
+}
+
+
+/* ---------- Celular ---------- */
 @media (max-width: 768px) {
   #choperia {
-    padding: 40px 15px;
+    padding-bottom: 40px;
   }
 
-  .choperia-conteudo {
-    grid-template-columns: 1fr;
+  .choperia-capa {
+    margin-bottom: 45px;
   }
 
-  .choperia-conteudo .cardapio-destaque {
-    order: -1;               /* a foto aparece antes do texto */
+  .choperia-capa h2 {
+    padding: 10px 22px;
   }
 
-  .prato-destaque .prato-foto {
-    width: 90px;
-    height: 90px;
+  .choperia-menu {
+    padding: 0 15px;
+  }
+
+  .menu-acordeao summary {
+    font-size: 18px;
+  }
+
+  .menu-conteudo {
+    padding: 14px 16px 18px;
+  }
+
+  .item-menu {
+    gap: 14px;
+  }
+
+  .item-menu img {
+    width: 70px;
+    height: 70px;
   }
 }
 /* ==========================================================================
-   15. SEÇÃO SOBRE NÓS / HISTÓRIA (FOTO DE FUNDO)
+   15. SEÇÃO NOSSA HISTÓRIA (FOTO DE FUNDO)
    ========================================================================== */
 #historia {
-  /* mesma técnica da home: degradê escuro por cima da foto para o texto ler bem */
+  /* degradê escuro por cima da foto para o texto ler bem */
   background:
     linear-gradient(rgba(2, 2, 32, 0.65), rgba(2, 2, 32, 0.85)),
     url("img/restaurante.jpg") center / cover no-repeat !important;
@@ -1060,19 +1309,27 @@ main, section:first-of-type, #home {
 .historia-conteudo {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
+  text-align: center;           /* título e subtítulo centralizados */
 }
 
 #historia h2 {
   font-size: clamp(1.6rem, 5vw, 2.4rem);
-  margin: 0 0 30px;
+  margin: 0 0 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Cada bloco vira um cartão de vidro, igual aos outros do site */
+.historia-subtitulo {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-style: italic;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Cartão de vidro, igual aos outros do site */
 .bloco-historia {
-  margin-bottom: 24px;
-  padding: 24px 22px;
+  padding: 28px 26px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.10);
   border: 1px solid rgba(255, 255, 255, 0.30);
@@ -1080,29 +1337,57 @@ main, section:first-of-type, #home {
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
 }
 
-.bloco-historia:last-child {
-  margin-bottom: 0;
+/* Parágrafos alinhados à esquerda: mais fáceis de ler em textos longos */
+.historia-texto {
+  text-align: left;
 }
 
-.bloco-historia h3 {
-  margin: 0 0 12px;
-  font-size: 22px;
-}
-
-.bloco-historia p {
+.historia-texto p {
   margin: 0 0 18px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-.bloco-historia p:last-child {
+.historia-texto p:last-child {
   margin-bottom: 0;
 }
 
-.equipe {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 14px;
+/* A citação do presidente em destaque */
+.historia-citacao {
+  margin: 26px 0;
+  padding: 20px 22px;
+  border-left: 4px solid #5ec2ec;
+  border-radius: 0 16px 16px 0;
+  background: rgba(2, 26, 58, 0.55);
+}
+
+.historia-citacao blockquote {
+  margin: 0;
+}
+
+.historia-citacao blockquote p {
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.historia-citacao figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* Faixa de facilidades no final */
+.historia-facilidades {
+  max-width: 650px;
+  margin: 24px auto 0;
+  padding: 14px 22px;
+  border-radius: 20px;
+  background: rgba(2, 26, 58, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
@@ -1112,6 +1397,10 @@ main, section:first-of-type, #home {
 
   .bloco-historia {
     padding: 20px 16px;
+  }
+
+  .historia-citacao {
+    padding: 16px;
   }
 }
 /* ==========================================================================
@@ -1199,4 +1488,88 @@ main, section:first-of-type, #home {
   .eventos-conteudo {
     grid-template-columns: 1fr;   /* foto em cima, lista embaixo */
   }
+}
+/* Container Geral da Galeria */
+.galeria-ambiente {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.galeria-titulo {
+  font-family: 'Playfair Display', serif; /* Ou sua fonte display vintage */
+  font-size: 2.5rem;
+  color: #1a2a3a; /* Tom escuro elegante */
+  margin-bottom: 10px;
+}
+
+.galeria-subtitulo {
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* A "Tabela" Inteligente (Grid) */
+.grid-ambiente {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Cria colunas automáticas */
+  gap: 25px; /* Espaçamento entre as fotos */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* O Card de Foto Estilo Moldura Antiga */
+.card-foto {
+  position: relative;
+  overflow: hidden;
+  border: 8px solid #fdfbf7; /* Moldura Off-White imitando foto revelada antiga */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Sombra suave */
+  border-radius: 4px;
+  background-color: #fdfbf7;
+  transition: transform 0.3s ease;
+  aspect-ratio: 4 / 3; /* Deixa todas as fotos com a mesma proporção */
+}
+
+.card-foto:hover {
+  transform: translateY(-5px); /* Efeito flutuante ao passar o mouse */
+}
+
+.card-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a foto preencher o espaço sem distorcer */
+  transition: filter 0.3s ease;
+}
+
+/* Legenda Vintage que surge no efeito Hover (UX/UI) */
+.legenda-vintage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(10, 25, 47, 0.95)); /* Fundo escuro azulado */
+  color: #fff;
+  padding: 20px;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Ativa a legenda ao passar o mouse (Desktop) ou clicar (Mobile) */
+.card-foto:hover .legenda-vintage {
+  opacity: 1;
+}
+
+.legenda-vintage h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin: 0 0 5px 0;
+  color: #ffcc00; /* Toque dourado vintage no título */
+}
+
+.legenda-vintage p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
 }
