@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Peixe-Vivo - Restaurante e Chopeira"> <!-- é para otimizar localização em sites de pesquisa --> 
+    <meta name="keywords" content="Restaurante, Chopeira, peixe frito, Peixe-Vivo, chop, chopp, antarctica, almoço, jantar, delivery, icem, fronteira, barragem marimbondo,menu, frutos do mar, viagem, rodovia br-153">
+    <meta name="author" content="Group Zets Web Development"> 
+    <meta property="og:title" content="Restaurante e Choperia Peixe-Vivo">
+    <meta property="og:description" content="Peixe frito, chope gelado e vista para o Rio Grande.">
+    <meta property="og:image" content="img/restaurante.jpg">
+    <title> Restaurante Peixe-Vivo </title>
+    <link rel="stylesheet" href="style.css"> <!---fazer o arquivo de estilo css para o site-->
+    <link rel="icon" href="img/faviconpeixevivo.webp" type="image/webp">        <!--minilogo no canto da aba lembrar como faz o favicon-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+        <!--Para o background tentativa de fazer fundo degrade azul com ondas pelo css e svg(www.getwaves.com)-->
+    <div class="oceano-caixa">
+      <div class="ondas-wrapper">
+        <div class="wave onda1"></div>
+        <div class="wave onda2"></div>
+        <div class="wave onda3"></div>
+        <div class="wave onda4"></div>
+        <div class="wave onda5"></div>
+        <div class="wave onda6"></div>
+      </div>
+    </div>
+       
+    <header> <!--menu do site para navegação-->              
+      <nav class="menu-navegacao" aria-label="Menu principal">
+        <button class="botao-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="lista-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul id="lista-menu">
+          <li><a href="#especial_prato_promo">Promoções</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
+          <li><a href="#choperia">Choperia</a></li>
+          <li class="item-logo"><a href="#home"><img src="img/logopeixevivo.webp" alt="Voltar ao topo" class="logo"></a></li>
+          <li><a href="#historia">Sobre nós</a></li>
+          <li><a href="#eventos">Eventos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home">
+        <div class="container-home">
+          <h1>Restaurante &amp; Chopeira Peixe-Vivo</h1>
+          <p class="resumo-home">O Peixe-Vivo é o ponto de encontro há mais de 70 anos, onde história e tradição se unem a um cenário espetacular. Saboreie pratos excepcionais enquanto contempla a vista monumental da Usina de Marimbondo direto da nossa famosa varanda. Estamos abertos para acolher os apaixonados por boa comida e boas histórias. Viva essa experiência hoje!</p>
+          <hr>
+          <p class="horario-home"><strong>Horário de Funcionamento:<br>Seg: 8h-15h | Ter-Dom: 8h-22h</strong></p>
+        </div>
+      </section>
+
+      <section id="fachada">
+        <figure class="moldura-fachada">
+        <img src="img/capas/mapa01.webp" alt="Mapa ilustrado da BR-153 em Icém-SP, mostrando a chegada à cidade, o Restaurante Peixe-Vivo, a ponte sobre o Rio Grande e a Usina de Marimbondo" loading="lazy">
+         <figcaption>PARADA OBRIGATÓRIA NA BR153</figcaption>   
+    <div class="tira-fotos">
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Fachada do restaurante">
+        <img src="img/capas/fachada.webp" alt="Fachada do restaurante" loading="lazy">
+        <span class="foto-nome">Fachada do Peixe-Vivo</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Foto aérea do restaurante com o Rio Grande ao fundo">
+        <img src="img/capas/fotoarerio.webp" alt="Varanda com vista" loading="lazy">
+        <span class="foto-nome">Foto aérea do restaurante</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Entrada">
+        <img src="img/capas/entrada.webp" alt="Entrada" loading="lazy">
+        <span class="foto-nome">Entrada</span>
+      </label>
+    </div>   
+        
+        </figure>
+      </section>
+
+      <section class="galeria-ambiente">
+        <h2 class="galeria-titulo">Galeria do Peixe-Vivo</h2>
+        <p class="galeria-subtitulo">Viva a experiência do Peixe-Vivo</p>
+        <div class="grid-ambiente">
+    
+          <!-- modelo de imagem com legenda -->
+          <div class="card-foto">
+            <img src="img/galeria/barinterior.webp" alt="Choperia Peixe-Vivo com vista para o Rio Grande" loading="lazy">
+            <div class="legenda-vintage"><h3>Choperia Peixe-Vivo</h3><p>Desfrute de chopes gelados em um ambiente acolhedor.</p></div>
+          </div>
+          
+            <div class="card-foto">
+            <img src="img/galeria/atendimento01.webp" alt="Atendimento sempre sorrindo e acolhedor" loading="lazy">
+            <div class="legenda-vintage"><h3>Prontos para te servir</h3><p>Sempre com um sorriso e um atendimento caloroso.</p></div>
+          </div>
+
+          <div class="card-foto">
+          <img src="img/galeria/parquekids.webp" alt="Espaço para crianças" loading="lazy">
+          <div class="legenda-vintage"><h3>Parque para Crianças</h3><p>Espaço para toda a família desfrutar de atividades divertidas.</p></div>
+        </div>
+
+         <div class="card-foto">
+          <img src="img/galeria/rigrande02.webp" alt="As margens do Rio Grande" loading="lazy">
+          <div class="legenda-vintage"><h3>As margens do Rio Grande</h3><p>Se conecte com a natureza e desfrute de vistas deslumbrantes.</p></div>
+        </div>
+
+        <div class="card-foto">
+          <img src="img/galeria/docescaseiros.webp" alt="Doces Caseiros" loading="lazy">
+          <div class="legenda-vintage"><h3>Doces Caseiros</h3><p>Experimente nossos doces artesanais frescos.</p></div>
+        </div>
+
+        <div class="card-foto">
+          <img src="img/galeria/atendimento03.webp" alt="Deck com vista para natureza" loading="lazy">
+          <div class="legenda-vintage"><h3>Varanda com vista</h3><p>Vista privilegiada do Rio Grande e das comportas da Usina de Marimbondo</p></div>
+        </div>
+
+        <div class="card-foto">
+          <img src="img/galeria/mesavista.webp" alt="Mesa com vista para o Rio Grande" loading="lazy">
+          <div class="legenda-vintage"><h3>Mesa com vista</h3><p>Desfrute de uma experiência gastronômica com vista para o Rio Grande.</p></div>
+        </div>
+
+        <div class="card-foto">
+          <img src="img/galeria/interior02.webp" alt="Produtos regionais" loading="lazy">
+          <div class="legenda-vintage"><h3>Produtos Regionais</h3><p>Experimente os melhores produtos da região.</p></div>
+        </div>
+       <div class="card-foto">
+          <img src="img/galeria/pescado.webp" alt="Tesouros do Rio Grande" loading="lazy">
+          <div class="legenda-vintage"><h3>Pescado do Rio Grande</h3><p>Peixes frescos e saborosos da região.</p></div>
+        </div>
+
+          <div class="card-foto">
+          <img src="img/galeria/riogrande01.webp" alt="As margens do Rio Grande" loading="lazy">
+          <div class="legenda-vintage"><h3>As margens do Rio Grande</h3><p>Se conecte com a natureza e desfrute de vistas deslumbrantes.</p></div>
+        </div>
+          <div class="card-foto">
+          <img src="img/galeria/barcomodelo.webp" alt="Ambiente acolhedor" loading="lazy">
+          <div class="legenda-vintage"><h3>Ambiente Acolhedor</h3><p>Um espaço acolhedor para desfrutar de uma refeição.</p></div>
+        </div>
+        <div class="card-foto">
+          <img src="img/galeria/paredebar.webp" alt="Espaço para todos em viagem" loading="lazy">
+          <div class="legenda-vintage"><h3>Parada Obrigatória</h3><p>no Km 0 da Br153</p></div>
+        </div>
+      </div>
+      </section>
+
+  <section id="especial_prato_promo">
+  <span class="selo-promo">Promoção</span>
+  <h2>Promoções de Jantar</h2>
+  <p class="promo-chamada">A partir das 18h, de Terça a Domingo</p>
+
+  <figure class="promo-moldura">
+    <img src="img/capas/promo1.webp" alt="Cartaz com as promoções de jantar do Peixe-Vivo, a partir das 18h, de terça a domingo" loading="lazy">
+  </figure>
+</section>
+
+<!-- seção do cardápio, com fotos e descrição dos pratos -->
+
+<section id="cardapio">
+
+   <div class="choperia-capa capa-baixa">
+    <img class="choperia-imagem" src="img/capas/destaquemenu.webp" alt="Mesa com pratos diversos servidos no Peixe-Vivo" loading="lazy">
+    <h2>Cardápio</h2>
+  </div>
+
+  <p class="cardapio-intro">Toque no nome de cada grupo para ver os pratos.</p>
+
+
+ <nav class="atalhos-cardapio" aria-label="Atalhos do cardápio">
+  <a href="#grupo-1-pessoa">1 pessoa</a>
+  <a href="#grupo-2-pessoas">2 pessoas</a>
+  <a href="#grupo-3-4-pessoas">3 a 4 pessoas</a>
+  <a href="#grupo-familia">Família</a>
+</nav>
+
+<!-- Destaque da casa mais pedido-->
+<article class="destaque-casa">
+  <img class="destaque-foto" src="img/cardapio/destaquemenucostelapacu.webp"
+       alt="Costela de pacu frita com fritas, arroz e pirão" loading="lazy">
+
+  <div class="destaque-texto">
+    <span class="selo-promo">Mais pedido da casa</span>
+    <h3>Costela de pacu</h3>
+    <p>Peixe frito com fritas, arroz e pirão.</p>
+    <p class="destaque-preco">R$ 215,00</p> 
+    <span class="selo-promo">Para dividir com a Família e Amigos</span>
+    
+  </div>
+
+  <div class="destaque-fotos">
+    <p class="destaque-fotos-titulo">Outros pratos da casa</p>
+    <div class="tira-fotos">
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Peixe à Brasileira">
+        <img src="img/cardapio/prato1peixeabrasilera.webp" alt="Peixe à Brasileira" loading="lazy">
+        <span class="foto-nome">Peixe à Brasileira</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Filé Grelhado com Legumes na manteiga">
+        <img src="img/cardapio/prato2grelhadocomlegumes.webp" alt="Filé Grelhado com Legumes na manteiga" loading="lazy">
+        <span class="foto-nome">Filé Grelhado com Legumes</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Salada Mista">
+        <img src="img/cardapio/prato3saladamista.webp" alt="Salada Mista" loading="lazy">
+        <span class="foto-nome">Salada Mista</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Parmegiana de peixe">
+        <img src="img/cardapio/prato4parmegianapeixe.webp" alt="Parmegiana de peixe" loading="lazy">
+        <span class="foto-nome">Parmegiana de Peixe</span>
+      </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Peixe Grelhado com Fritas">
+        <img src="img/cardapio/prato5grelhadocomfritas.webp" alt="Peixe Grelhado com Fritas" loading="lazy">
+        <span class="foto-nome">Filé Grelhado com Fritas</span>
+      </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Peixe a Milanesa com Fritas">
+        <img src="img/cardapio/prato6milanesapeixe.webp" alt="Peixe a Milanesa com Fritas" loading="lazy">
+        <span class="foto-nome">Filé a Milanesa e Pintado ao molho</span>
+      </label>
+    </div>
+  </div>
+</article>
+
+<div class="cardapio-menu">
+
+  <details class="menu-acordeao" id="grupo-1-pessoa" open>
+    <summary>Para 1 pessoa</summary>
+    <div class="menu-conteudo">
+      
+      <h4>Pratos executivos</h4>
+      <p class="grupo-nota">Exceto domingos e feriados.</p>
+      <ul class="itens-menu">
+         <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Grelhado com Fritas</strong><span class="item-preco">R$ 60,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Pirão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe à Milanesa com Fritas</strong><span class="item-preco">R$ 59,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Pirão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé com Mussarela e Fritas</strong><span class="item-preco">R$ 66,00</span></p>
+              <p class="item-desc">Acompanha Arroz e Feijão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra-filé à Cavalo e Fritas</strong><span class="item-preco">R$ 62,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra-filé com Fritas</strong><span class="item-preco">R$ 55,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Mussarela e Fritas</strong><span class="item-preco">R$ 56,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Fritas</strong><span class="item-preco">R$ 52,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Frango Grelhado com Fritas</strong><span class="item-preco">R$ 49,50</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p> </div> </li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Frango com Mussarela e Fritas</strong><span class="item-preco">R$ 52,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p> </div> </li>
+      </ul>
+      <h4>Pratos individuais</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe à Milanesa com Fritas</strong><span class="item-preco">R$ 72,50</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Pirão.</p> </div> </li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Grelhado com Fritas</strong><span class="item-preco">R$ 75,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Pirão.</p> </div> </li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Grelhado com Fritas e Legumes na manteiga</strong><span class="item-preco">R$ 82,50</span></p>
+              <p class="item-desc">Acompanha Arroz e Pirão.</p> </div> </li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Pintado ao molho</strong><span class="item-preco">R$ 85,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Pirão.</p> </div> </li>  
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra-Filé com Fritas</strong><span class="item-preco">R$ 85,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra-Filé à Cavalo</strong><span class="item-preco">R$ 87,50</span></p>
+              <p class="item-desc">Acompanha Salada, Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra-Filé com Mussarela</strong><span class="item-preco">R$ 89,50</span></p>
+              <p class="item-desc">Acompanha Salada, Fritas, Farofa, Banana à Milanesa, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Fritas</strong><span class="item-preco">R$ 76,00</span></p>
+              <p class="item-desc">Acompanha Salada, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Mussarela</strong><span class="item-preco">R$ 79,50</span></p>
+              <p class="item-desc">Acompanha Salada, Farofa, Fritas, Banana à Milanesa, Arroz e Feijão.</p></div></li>    
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Frango Filé Grelhado</strong><span class="item-preco">R$ 74,50</span></p>
+              <p class="item-desc">Acompanha Salada, Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Frango Filé Grelhado com Mussarela</strong><span class="item-preco">R$ 79,00</span></p>
+              <p class="item-desc">Acompanha Salada, Fritas, Farofa, Banana à Milanesa, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Frango Filé Grelhado com Mussarela e Legumes na Manteiga</strong><span class="item-preco">R$ 84,00</span></p>
+              <p class="item-desc">Acompanha Arroz, Feijão e Fritas.</p></div></li>       
+      </ul> 
+
+    </div>    
+  </details>
+
+  <details class="menu-acordeao" id="grupo-2-pessoas">
+    <summary>Para 2 a 3 pessoas</summary>
+    <div class="menu-conteudo">
+      <h4>Peixes</h4>
+      <ul class="itens-menu">
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixada Especial</strong><span class="item-preco">R$ 196,00</span></p><p class="item-desc">Pintado ao Molho, Filé de Peixe à Milanesa, Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixada Tropical</strong><span class="item-preco">R$ 176,00</span></p><p class="item-desc">Filé à Milanesa, Filé Grelhado, Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé à Milanesa</strong><span class="item-preco">R$ 178,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé à Dorê</strong><span class="item-preco">R$ 190,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe à Parmegiana</strong><span class="item-preco">R$ 225,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>ORLY: Filé de Peixe Recheado</strong><span class="item-preco">R$ 295,00</span></p><p class="item-desc">Com Mussarela, Presunto, Legumes na Manteiga, Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Grelhado</strong><span class="item-preco">R$ 195,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Grelhado com Legumes</strong><span class="item-preco">R$ 210,00</span></p><p class="item-desc">Legumes na Manteiga, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Costelas Pacu Fritas</strong><span class="item-preco">R$ 215,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Pintado ao Molho</strong><span class="item-preco">R$ 240,00</span></p><p class="item-desc">Molho de Tomate, Cebola, Azeitona, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Tilápia Grelhado</strong><span class="item-preco">R$ 220,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Tilápia à Parmegiana</strong><span class="item-preco">R$ 245,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+      </ul>
+      <h4>Camarão</h4>
+      <ul class="itens-menu">
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Camarão à Baiana</strong><span class="item-preco">R$ 348,00</span></p><p class="item-desc">Camarão ao Molho, Fritas e Arroz Branco.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Camarão à Grega</strong><span class="item-preco">R$ 370,00</span></p><p class="item-desc">No Espeto com Fritas e Arroz à Grega.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Camarão à Dorê</strong><span class="item-preco">R$ 390,00</span></p><p class="item-desc">Batata Dourada na Manteiga e Arroz à Grega.</p></div></li>
+      </ul>
+      <h4>Bovinos e suínos</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé com Fritas</strong><span class="item-preco">R$ 185,00</span></p><p class="item-desc">Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé com Farofa</strong><span class="item-preco">R$ 195,00</span></p><p class="item-desc">Fritas e Banana à Milanesa.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé à Cavalo</strong><span class="item-preco">R$ 198,00</span></p><p class="item-desc">Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé com Legumes</strong><span class="item-preco">R$ 220,00</span></p><p class="item-desc">Na Manteiga com Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé à Parmegiana</strong><span class="item-preco">R$ 255,00</span></p><p class="item-desc">Fritas e Arroz.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon com Mussarela</strong><span class="item-preco">R$ 270,00</span></p><p class="item-desc">Farofa, Fritas, Banana à Milanesa, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon à Cavalo</strong><span class="item-preco">R$ 230,00</span></p><p class="item-desc">Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon à Parmegiana</strong><span class="item-preco">R$ 255,00</span></p><p class="item-desc">Fritas e Arroz.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon com Fritas</strong><span class="item-preco">R$ 220,00</span></p><p class="item-desc">Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon com Legumes</strong><span class="item-preco">R$ 220,00</span></p><p class="item-desc">Na Manteiga, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Fritas</strong><span class="item-preco">R$ 190,00</span></p><p class="item-desc">Farofa, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Mussarela</strong><span class="item-preco">R$ 200,00</span></p><p class="item-desc">Fritas, Banana à Milanesa, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo à Cavalo</strong><span class="item-preco">R$ 195,00</span></p><p class="item-desc">Com Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Legumes</strong><span class="item-preco">R$ 198,00</span></p><p class="item-desc">Na Manteiga, Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo à Mineira</strong><span class="item-preco">R$ 298,00</span></p><p class="item-desc">Lombo Grelhado, Tutu, Bacon, Ovos, Batata, Torresmo, Couve e Arroz.</p></div></li>
+        
+      </ul>
+      <h4>Frango</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Frango Grelhado com Fritas</strong><span class="item-preco">R$ 145,00</span></p><p class="item-desc">Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Frango Grelhado c/ Legumes</strong><span class="item-preco">R$ 155,00</span></p><p class="item-desc">Na Manteiga, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Frango Grelhado com Mussarela</strong><span class="item-preco">R$ 170,00</span></p><p class="item-desc">Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Frango Grelhado com Mussarela</strong><span class="item-preco">R$ 180,00</span></p><p class="item-desc">Purê de Batata, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Frango à Parmegiana</strong><span class="item-preco">R$ 215,00</span></p><p class="item-desc">C/ Fritas e Arroz.</p></div></li>
+      </ul>           
+    </div>
+  </details>
+
+  <details class="menu-acordeao" id="grupo-3-4-pessoas">
+    <summary>Para 3 a 4 pessoas</summary>
+    <div class="menu-conteudo">
+      <h4>Peixes</h4>
+      <ul class="itens-menu">
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixada do Chefe</strong><span class="item-preco">R$ 398,00</span></p><p class="item-desc">Pintado ao Molho, Filé Milanesa com Fritas, Peixe Frito, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixada Rio Grande</strong><span class="item-preco">R$ 385,00</span></p><p class="item-desc">Pintado ao Molho, Filé Grelhado com Fritas, Filé Milanesa com Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixada Marinheiro</strong><span class="item-preco">R$ 310,00</span></p><p class="item-desc">Filé à Milanesa com Fritas, Filé Grelhado com Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe na Telha</strong><span class="item-preco">R$ 300,00</span></p><p class="item-desc">Postas Pintado ao Molho com Pirão, Champignon, Legumes na Manteiga, Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>À ORLY</strong><span class="item-preco">R$ 390,00</span></p><p class="item-desc">Filé de Peixe Recheado com Mussarela, Presunto, Legumes na Manteiga, Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe à Brasileira</strong><span class="item-preco">R$ 450,00</span></p><p class="item-desc">Postas de Pintado ao Molho com Camarão, Leite de Coco, Azeit. Pretas, Champignon, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe à Parmegiana</strong><span class="item-preco">R$ 380,00</span></p><p class="item-desc">Filé de Peixe ao Molho de Tomate, Presunto, Mussarela, Ervilha, Palmito, Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Moqueca</strong><span class="item-preco">R$ 320,00</span></p><p class="item-desc">Postas de Pintado ao Molho de Tomate, Pimentão, Coentro, Presunto, Champignon, Azeite Dendê, Leite de Coco, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Milanesa</strong><span class="item-preco">R$ 240,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Pintado Grelhado</strong><span class="item-preco">R$ 380,00</span></p><p class="item-desc">Alcaparra, Champignon, Batata Dourada na Manteiga, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Salmão</strong><span class="item-preco">R$ 390,00</span></p><p class="item-desc">Filé na Grelha com Alcaparra, Champignon, Batata Dourada na Manteiga, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Badejo</strong><span class="item-preco">R$ 420,00</span></p><p class="item-desc">Filé na Grelha com Alcaparra, Champignon, Batata Dourada na Manteiga, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe Vivo</strong><span class="item-preco">R$ 440,00</span></p><p class="item-desc">Filé de Peixe Grelhado, Coberto com Mussarela, Purê de Batata, Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Aruanã</strong><span class="item-preco">R$ 350,00</span></p><p class="item-desc">Filé na Grelha, Alcaparras, Champignon, Batata Dourada na Manteiga, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Pintado ao Molho</strong><span class="item-preco">R$ 340,00</span></p><p class="item-desc">Molho de Tomate, Cebola, Azeitonas Pretas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Grelhado com Fritas</strong><span class="item-preco">R$ 280,00</span></p><p class="item-desc">Com Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Peixe Grelhado com Legumes</strong><span class="item-preco">R$ 298,00</span></p><p class="item-desc">Na Manteiga, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Tilápia Grelhado</strong><span class="item-preco">R$ 280,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+          <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé de Tilápia à Parmegiana</strong><span class="item-preco">R$ 280,00</span></p><p class="item-desc">Fritas, Arroz e Pirão.</p></div></li>
+      </ul>
+      <h4>Bovinos</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon com Fritas</strong><span class="item-preco">R$ 240,00</span></p><p class="item-desc">Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon à Cavalo</strong><span class="item-preco">R$ 280,00</span></p><p class="item-desc">Banana à Milanesa, Purê de Batata, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon com Legumes</strong><span class="item-preco">R$ 280,00</span></p><p class="item-desc">Na Manteiga, Arroz e Feijão.</p></div></li>
+      </ul>
+      <h4>Suínos</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Fritas e Mussarela</strong><span class="item-preco">R$ 260,00</span></p><p class="item-desc">Mussarela, Banana à Milanesa, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo à Cavalo</strong><span class="item-preco">R$ 220,00</span></p><p class="item-desc">Fritas, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo com Legumes</strong><span class="item-preco">R$ 240,00</span></p><p class="item-desc">Na Manteiga, Arroz e Feijão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lombo à Mineira </strong><span class="item-preco">R$ 350,00</span></p><p class="item-desc">Lombo Grelhado, Tutu, Bacon, Ovos, Batata, Torresmo, Couve e Arroz.</p></div></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="menu-acordeao" id="grupo-familia">
+    <summary>Pratos especiais · família</summary>
+    <div class="menu-conteudo">
+      <p class="grupo-nota">Servem até 7 pessoas.</p>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixada Família</strong><span class="item-preco">R$ 745,00</span></p><p class="item-desc">Pintado ao Molho c/ Camarão, Filé Milanesa, Filé Grelh., Peixe Frito, Fritas, Arroz e Pirão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe à Brasileira</strong><span class="item-preco">R$ 640,00</span></p><p class="item-desc">Postas de Pintado ao Molho com Camarão, Leite de Coco, Azeit. Pretas, Champignon, Arroz e Pirão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe na Telha</strong><span class="item-preco">R$ 390,00</span></p><p class="item-desc">Postas de Pintado ao Molho com Pirão, Champignon, Azeitonas Pretas e Arroz.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>À ORLY</strong><span class="item-preco">R$ 460,00</span></p><p class="item-desc">Filé de Peixe Recheado com Mussarela, Presunto, Legumes na Manteiga, Fritas, Arroz e Pirão.</p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Moqueca</strong><span class="item-preco">R$ 450,00</span></p><p class="item-desc">Postas de Pintado ao Molho de Tomate, Azeitonas Pretas, Champignon, Pimentão, Azeite Dendê, Leite de Coco, Arroz e Pirão.</p></div></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="menu-acordeao" id="grupo-acompanhamentos">
+    <summary>Guarnições e saladas</summary>
+    <div class="menu-conteudo">
+       <h4>Filé simples</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Peixe Milanesa Simples</strong><span class="item-preco">R$ 35,90</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Peixe Grelhado Simples</strong><span class="item-preco">R$ 38,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Pintado ao Molho Simples</strong><span class="item-preco">R$ 45,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé Simples</strong><span class="item-preco">R$ 39,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon Simples</strong><span class="item-preco">R$ 45,00</span></p></div></li>
+      </ul>    
+      <h4>Guarnições</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Arroz Branco</strong><span class="item-preco">R$ 25,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Arroz à Grega</strong><span class="item-preco">R$ 36,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Feijão</strong><span class="item-preco">R$ 25,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Pirão de Peixe</strong><span class="item-preco">R$ 32,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Purê de Batata</strong><span class="item-preco">R$ 36,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Banana à Milanesa "3"</strong><span class="item-preco">R$ 26,00</span></p></div></li>
+      </ul>
+      <h4>Saladas</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Salada Mista</strong><span class="item-preco">R$ 86,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Salada de Palmito</strong><span class="item-preco">R$ 86,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Meia Palmito</strong><span class="item-preco">R$ 60,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Meia Salada Mista</strong><span class="item-preco">R$ 65,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Simples: Alface, Tomate e Legumes</strong><span class="item-preco">R$ 39,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Meia Simples: Alface, Tomate e Legumes</strong><span class="item-preco">R$ 29,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Legumes na Manteiga</strong><span class="item-preco">R$ 39,00</span></p></div></li>
+      </ul>
+    </div>
+  </details>
+
+</div>
+</section>
+<!-- seção da choperia, com menu de bebidas e porções -->
+<section id="choperia">
+
+  <div class="choperia-capa">
+    <img class="choperia-imagem" src="img/capas/destaquechoperia.webp" alt="Balcão da Chopeira Peixe-Vivo com dois chopes sendo tirados" loading="lazy">
+    <h2>Chopeira Peixe-Vivo</h2>
+  </div>
+
+  <div class="choperia-menu">
+
+    <!-- Destaque da chopperia -->
+  <article class="destaque-casa">
+  <img class="destaque-foto" src="img/bar/chopecopo.webp" alt="Copo de Chop Antarctica Gelado" loading="lazy">
+
+  <div class="destaque-texto">
+    <span class="selo-promo">Promoção de Happy Hour!</span>
+    <h3>A partir das 18h <br> de Terça a Domingo</h3>
+    <span class="selo-promo">Valor Promocional</span>
+    <p>Chope Antarctica Gelado</p>    
+    <p class="destaque-preco">R$ 7,90</p> 
+    
+    
+  </div>
+
+  <div class="destaque-fotos">
+    <p class="destaque-fotos-titulo">Aproveite nossas porções para acompanhar!</p>
+    <div class="tira-fotos">
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Porção de Camarão">
+        <img src="img/porcao/porcaocamarao.webp" alt="Porção de Camarão" loading="lazy">
+        <span class="foto-nome">Porção de Camarão</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Porção de Porquinho">
+        <img src="img/porcao/porcaoporquinho.webp" alt="Porção de Porquinho" loading="lazy">
+        <span class="foto-nome">Porção de Porquinho</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Porção de Tilápia Frita">
+        <img src="img/porcao/porcaotilapiafrita.webp" alt="Porção de Tilápia Frita" loading="lazy">
+        <span class="foto-nome">Porção de Tilápia Frita</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Porção de Fritas">
+        <img src="img/porcao/porcaofritas.webp" alt="Porção de Fritas" loading="lazy">
+        <span class="foto-nome">Porção de Fritas</span>
+      </label>
+        <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Porção de Filé Mignon com Fritas">
+        <img src="img/porcao/porcaofilemignon.webp" alt="Porção de Filé Mignon com Fritas" loading="lazy">
+        <span class="foto-nome">Porção de Filé Mignon com Fritas</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Porção de Frango Frito">
+        <img src="img/porcao/porcaofrangofrito.webp" alt="Porção de Frango Frito" loading="lazy">
+        <span class="foto-nome">Porção de Frango Frito</span>
+      </label>
+    </div>
+    <p>Proibido para menores de 18 anos, se beber não diriga.</p>
+  </div>
+  
+</article>
+
+    <!-- Bloco 1 --> <!-- sessão do menu de cervejas -->
+    <details class="menu-acordeao" open>
+      <summary>Chopes e cervejas</summary>
+      <div class="menu-conteudo">
+           
+      <ul class="itens-menu">
+        <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Chopp Claro Antarctica</strong> <span class="item-preco">R$ 13,90</span></p> </div> </li>
+        <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Cerveja Skol | Brahma | Antarctica</strong> <span class="item-preco">R$ 13,90</span></p> </div> </li>
+        <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Cerveja Sub-zero | Original | Bohemia </strong> <span class="item-preco">R$ 16,90</span></p> </div> </li>
+        <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Cerveja Heineken</strong> <span class="item-preco">R$ 19,90</span></p> </div> </li>
+        <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Cerveja Heineken Longneck</strong> <span class="item-preco">R$ 11,90</span></p> </div> </li>
+        <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Cerveja Skol | Brahma</strong> <span class="item-preco">R$ 7,50</span></p> </div> </li>
+        <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Cerveja Heineken | Zero</strong> <span class="item-preco">R$ 11,90</span></p> </div> </li>
+       
+      </ul>
+    </div>
+    </details>
+
+    
+    <!-- Menu 2: Drinks -->
+    <details class="menu-acordeao">
+      <summary>Aperitivos</summary>
+      <div class="menu-conteudo">
+
+        <ul class="itens-menu">
+          <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Caipiroska Smirnoff | Orloff</strong> <span class="item-preco"> R$ 30,00</span></p> </div> </li>
+          <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Caipirinha Pinga</strong> <span class="item-preco">R$ 25,00</span></p> </div> </li>
+          <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Martini</strong> <span class="item-preco">R$ 20,00</span></p> </div> </li>
+          <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Campari</strong> <span class="item-preco">R$ 22,00</span></p> </div> </li>
+          <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Whisky Nacionalizado</strong> <span class="item-preco">R$ 25,00</span></p> </div> </li>
+          <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Whisky Nacional</strong> <span class="item-preco">R$ 20,00</span></p> </div> </li>
+          <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Whisky Importado Chivas | Black</strong> <span class="item-preco">R$ 49,00</span></p> </div> </li>
+          <li class="item-menu"> <div class="item-texto"> <p class="item-linha"><strong>Whisky Importado Red Label | JB</strong> <span class="item-preco">R$ 36,00</span></p> </div> </li>
+        </ul>
+      </div>
+    </details>
+    <!-- Menu 3: Licores -->
+    <details class="menu-acordeao">
+      <summary>Licores</summary>
+      <div class="menu-conteudo">
+
+        <ul class="itens-menu">
+          <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Licor Nacional</strong> <span class="item-preco">R$ 9,50</span></p> </div> </li>
+          <li class="item-menu"><div class="item-texto"> <p class="item-linha"><strong>Licor Importado</strong> <span class="item-preco">R$ 16,50</span></p> </div> </li>
+         
+        </ul>
+      </div>
+    </details>
+    <!-- Menu 4: Vinhos -->
+    <details class="menu-acordeao">
+      <summary>Vinhos</summary> 
+      <div class="menu-conteudo">
+
+      <ul class="itens-menu">
+        <li class="item-menu"> <div class="item-texto"> <strong>Confira nossa carta de vinhos com nossos garçons</strong> </div> </li>
+      </ul>
+    </div>
+    </details>
+
+    <!-- Menu 5: Porções -->
+    <details class="menu-acordeao">
+      <summary>Porções</summary>
+      <div class="menu-conteudo">      
+    
+      <h4>Porções frias</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Azeitonas Pretas ou Verdes</strong> <span class="item-preco">R$ 40,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Presunto</strong> <span class="item-preco">R$ 40,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Mussarela</strong> <span class="item-preco">R$ 45,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Salame</strong> <span class="item-preco">R$ 59,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Palmito, Tomate, Azeitonas</strong> <span class="item-preco">R$ 75,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Tábua de Frios</strong> <span class="item-preco">R$ 220,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Meia Tábua de Frios</strong> <span class="item-preco">R$ 140,00</span></p></div></li>
+      </ul>
+
+      <h4>Porções quentes</h4>
+      <ul class="itens-menu">
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Tilápia com Molho Tártaro</strong> <span class="item-preco">R$ 75,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe à Palito com Molho de Tártaro</strong> <span class="item-preco">R$ 75,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Peixe em Fatias com Molho Tártaro</strong> <span class="item-preco">R$ 75,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Camarão à Dorê com Molho Tártaro</strong> <span class="item-preco">R$ 198,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Lambari com Molho Tártaro</strong> <span class="item-preco">R$ 48,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Porquinho com Molho Tártaro</strong> <span class="item-preco">R$ 69,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Frango à Passarinho</strong> <span class="item-preco">R$ 46,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Filé Mignon com Fritas</strong> <span class="item-preco">R$ 86,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Contra Filé com Fritas</strong> <span class="item-preco">R$ 79,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Calabresa</strong> <span class="item-preco">R$ 39,00</span></p></div></li>
+        <li class="item-menu"><div class="item-texto"><p class="item-linha"><strong>Batata Frita</strong> <span class="item-preco">R$ 29,00</span></p></div></li>
+      </ul>
+
+    </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- seção sobre a história do restaurante, antes ia ter foto da equipe mas não foi possivel pegar com cliente a foto a tempo -->
+<section id="historia">
+  <div class="historia-conteudo">
+    <h2>Nossa história</h2>
+    <p class="historia-subtitulo"> 70 anos de tradição servindo boa comida as margens do Rio Grande.</p>
+    <div class="bloco-historia historia-texto">
+      <p>Aproveitando o progresso que levaria para o interior do Brasil com a chegada da rodovia <strong>BR-153 (Transbrasiliana)</strong>, o grande investidor Maurício Goulart construiu, na margem esquerda do Rio Grande, no município de Icém, um grande restaurante. O local foi estrategicamente escolhido por possuir uma das mais belas maravilhas do mundo na época: o Canal do Ferrador e as Cachoeiras de Marimbondo.</p>
+      <p>O restaurante recebeu o nome sugestivo de <strong>Peixe-Vivo</strong>. A inauguração contou com uma honra histórica memorável: a presença do então Presidente da República, <strong>Dr. Juscelino Kubitschek de Oliveira</strong>, grande amigo do fundador.</p>
+       <figure class="moldura-fachada foto-historia">
+        <img src="img/historia/fotohistorica01.webp" alt="Foto histórica do Restaurante Peixe-Vivo" loading="lazy">
+        <figcaption>Foto histórica do Restaurante Peixe-Vivo, com a presença do Presidente Juscelino Kubitschek.</figcaption>       
+        </figure>
+      <figure class="historia-citacao">
+        <blockquote>
+          <p>“Agora entendo a importância do Peixe-Vivo sair para fora d’água fria!”</p>
+        </blockquote>
+        <figcaption>— Presidente Juscelino Kubitschek, ao saborear a gostosa peixada da casa (lembrando de sua música predileta).</figcaption>        
+      </figure>
+      <p>Essa célebre frase do presidente até hoje é motivo de preocupação e honra para nós. Ela nos motiva a manter os mais finos padrões de qualidade na cozinha, no atendimento acolhedor e na grande variedade de pratos à base de peixes frescos.</p>
+      <p>No ano de 1981, o Peixe-Vivo foi adquirido pelos amigos <strong>Joaquim e Manoel</strong>, que deram ao restaurante sua nova e icônica forma arquitetônica. Com a cheia das águas do Rio Grande, a famosa varanda deixa no cliente a nítida e mágica impressão de estar almoçando a bordo de um grande transatlântico.</p>
+      <p>Tendo recebido ao longo das décadas as mais expressivas personalidades políticas, artísticas e empresariais do país, o Peixe-Vivo consolida-se hoje como a mais bem montada choperia da região, servindo o tradicional e trincando <strong>Chopp Antarctica</strong>.</p>
+    
+     <figure class="moldura-fachada foto-historia">
+      <div class="tira-fotos">
+        <label class="foto-mini">
+          <input type="checkbox" aria-label="Ampliar foto: A construção original">
+          <img src="img/historia/fotohistoria02.webp" alt="A construção original" loading="lazy">
+          <span class="foto-nome">A construção original</span>
+        </label>
+        <label class="foto-mini">
+          <input type="checkbox" aria-label="Ampliar foto: O presidente no restaurante">
+          <img src="img/historia/fotohistorica03.webp" alt="O presidente no restaurante" loading="lazy">
+          <span class="foto-nome">Vista da ponte</span>
+        </label>
+        <label class="foto-mini">
+          <input type="checkbox" aria-label="Ampliar foto: O restaurante nos anos 80">
+          <img src="img/historia/fotohistorica04.webp" alt="O restaurante nos anos 80" loading="lazy">
+          <span class="foto-nome">Celebridades que nos visitaram</span>
+        </label>
+        </div>
+        </figure>
+    </div>
+    <p class="historia-facilidades">
+      <span aria-hidden="true">📍</span> Um ponto de encontro com amplo estacionamento, playground para as crianças e o cenário monumental da Usina de Marimbondo.
+    </p>
+  </div>  
+</section>
+
+       <!-- seção de eventos,foi mudada para sessão de de venha fazer sua festa com a gente a pedido do cliente -->
+            <section id="eventos">
+  <h2>Venha fazer sua festa aqui com a gente!</h2>
+
+  <div class="eventos-conteudo">
+
+    
+    <figure class="evento-foto">
+      <img src="img/eventos/evento01.webp"  alt="Eventos e comemorações no Restaurante Peixe-Vivo"  loading="lazy">   
+      <figcaption>Aniversários, casamentos e eventos especiais: Comemore no Peixe-Vivo!</figcaption>        
+      <div class="tira-fotos">
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Festa na varanda">
+        <img src="img/eventos/evento02.webp" alt="Festa na varanda" loading="lazy">
+        <span class="foto-nome">Festa na varanda</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Mesa para confraternização">
+        <img src="img/eventos/evento04.webp" alt="Mesa para confraternização" loading="lazy">
+        <span class="foto-nome">Mesa para confraternização</span>
+      </label>
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Decoração de evento">
+        <img src="img/eventos/evento03.webp" alt="Decoração de evento" loading="lazy">
+        <span class="foto-nome">Decoração de evento</span>
+      </label>
+      </div>
+      
+      
+    </figure>
+
+    <ul class="lista-eventos">
+      <li class="evento">
+        <h3>Espaço Único:</h3>
+        <p>Varanda panorâmica flutuante sobre o Rio Grande.</p>
+      </li>
+      <li class="evento">
+        <h3>Estrutura Completa:</h3>
+        <p>Choperia renomada e cardápio personalizado para grupos</p>
+      </li>
+      <li class="evento">
+        <h3>Diversão para toda a família:</h3>
+        <p>Playground seguro para as crianças aproveitarem enquanto os adultos comemoram.</p>
+      </li>
+      <li class="evento">
+        <h3>Logística Fácil:</h3>
+        <p>Amplo estacionamento e localização estratégica na estrada para receber convidados em Icém, Fronteira e região. Apenas a 45min de São José do Rio Preto.</p>
+      </li>
+      
+    </ul>
+
+  </div>
+</section>
+
+<section id="redes_social">
+  <h2>Siga o Peixe-Vivo</h2>
+  <p class="redes-chamada">Veja o que está acontecendo no nosso Instagram.</p>
+
+  <div class="carrossel">
+    <a href="https://www.instagram.com/peixe_vivo_restaurante_/p/Dc_sNUkAqo0/"  target="_blank" rel="noopener noreferrer">
+      <img src="img/posts/posts1.webp" alt="Prato servido no Restaurante Peixe-Vivo" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/peixe_vivo_restaurante_/p/Dc_riD3zzhI/"  target="_blank" rel="noopener noreferrer">
+      <img src="img/posts/posts2.webp" alt="Prato servido no Restaurante Peixe-Vivo" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/comerbemdicas/reel/C5jivagPx8k/"  target="_blank" rel="noopener noreferrer">
+      <img src="img/posts/posts3.webp" alt="Vídeo apresentação e recomendação sobre o Restaurante Peixe-Vivo" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/p/DEc2zVxuHrX/" target="_blank" rel="noopener noreferrer">
+      <img src="img/posts/posts4.webp" alt="Ambiante do Restaurante" loading="lazy">
+    </a>
+
+  </div>
+
+  <a class="btn-rota" href="https://www.instagram.com/peixe_vivo_restaurante_/" target="_blank" rel="noopener noreferrer">
+    Seguir no Instagram
+  </a>
+</section>
+
+   <section id="contato" class="contato">
+  <h2>Contato</h2>
+  <p class="contato-intro">Para fazer reservas ou tirar dúvidas, fale com o Peixe-Vivo:</p>
+
+  <div class="contato-cards">
+
+    <a class="card-contato" href="https://api.whatsapp.com/send?phone=5517997010739&text=Olá%20gostaria%20de%20fazer%20uma%20reserva!" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="#ffffff" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      <span class="card-titulo">WhatsApp</span>
+      <span class="card-info">Reservas e dúvidas</span>
+    </a>
+
+    <a class="card-contato" href="tel:+5517997010739">
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      <span class="card-titulo">Telefone</span>
+      <span class="card-info">(17) 99701-0739</span>
+    </a>
+
+    <a class="card-contato" href="mailto:joaquim2442s@gmail.com">
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      <span class="card-titulo">E-mail</span>
+      <span class="card-info">Fale conosco por e-mail</span>
+    </a>
+
+  </div>
+</section>
+        
+            <!-- botão whatsapp -->
+<a href="https://api.whatsapp.com/send?phone=5517997010759&text=Olá%20estou%20no%20site%20e%20gostaria%20de%20mais%20informações!" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Fazer reserva pelo WhatsApp">
+  <svg class="icone-whatsapp" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<section id="localizacao">
+  <h2>Venha nos visitar no Restaurante Peixe-Vivo – Icém</h2>
+
+  <iframe class="mapa"
+          title="Mapa com a localização do Restaurante Peixe-Vivo"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d213908.30351292805!2d-49.41664543298244!3d-20.307045499999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bce66b58dde44b%3A0x2286b9c60944c77e!2sRestaurante%20Peixe%20Vivo!5e1!3m2!1spt-BR!2sbr!4v1791576901152!5m2!1spt-BR!2sbr"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+  <p class="endereco">
+    Endereço: BR-153, km 123, Icém-SP (próximo à Usina Hidrelétrica de Marimbondo).
+  </p>
+
+  <a class="btn-rota"
+     href="https://www.google.com/maps/search/?api=1&query=Restaurante+Peixe+Vivo+Icém"
+     target="_blank"
+     rel="noopener noreferrer">Como chegar</a>
+</section>
+    </main>
+<footer class="rodape">
+  <div class="rodape-conteudo">
+
+    <div class="rodape-bloco">
+      <h3>Peixe-Vivo</h3>
+      <p>Restaurante &amp; Chopeira</p>
+    </div>
+
+    <div class="rodape-bloco">
+      <h3>Horário</h3>
+      <p>Seg: 8h-15h<br>Ter-Dom: 8h-22h</p>
+    </div>
+
+    <div class="rodape-bloco">
+      <h3>Redes sociais</h3>
+      <ul class="redes_sociais">
+  <li>
+    <a href="https://www.instagram.com/peixe_vivo_restaurante_/" target="_blank" rel="noopener noreferrer" class="rede instagram" aria-label="Instagram do Peixe-Vivo">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    </a>
+  </li>
+  <li>
+    <a href="https://www.facebook.com/peixevivobr153" target="_blank" rel="noopener noreferrer" class="rede facebook" aria-label="Facebook do Peixe-Vivo">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+  </li>
+</ul>
+    </div>
+
+  </div>
+
+  <p class="direitos">&copy; 2026 Restaurante e Chopeira Peixe-Vivo. Todos os direitos reservados.</p>
+</footer>
+ <script src="script.js" defer></script>
+    </body>
+    </html>

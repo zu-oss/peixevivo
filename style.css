@@ -1,0 +1,1653 @@
+
+/* ==========================================================================
+   0. VARIÁVEIS E BASE
+   ========================================================================== */
+:root {
+  /* Desenho da onda: usado nas ondas do fundo, nas faixas azuis e no hover dos menus */
+  --onda: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C200,20 400,20 600,60 S1000,100 1200,60 V120 H0 Z'/%3E%3C/svg%3E");
+
+  --azul-claro: #5ec2ec;
+  --azul-botao: #1479b8;
+  --faixa: rgba(2, 26, 58, 0.55);            /* faixa azul escura translúcida */
+  --vidro: rgba(255, 255, 255, 0.10);        /* fundo dos cartões de vidro */
+  --borda-vidro: 1px solid rgba(255, 255, 255, 0.30);
+  --sombra: 0 8px 22px rgba(0, 0, 0, 0.4);
+  --sombra-grande: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --sombra-texto: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Links herdam a cor branca do texto e não têm sublinhado */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Vidro: fundo translúcido + borda fina + desfoque (cartões do site inteiro) */
+.moldura-fachada,
+.evento-foto,
+.evento,
+.card-contato,
+.bloco-historia,
+.cartao-menu,
+.destaque-casa,
+.menu-acordeao {
+  background: var(--vidro);
+  border: var(--borda-vidro);
+  backdrop-filter: blur(6px);
+}
+
+.card-contato,
+.bloco-historia,
+.cartao-menu,
+.destaque-casa,
+.menu-acordeao {
+  box-shadow: var(--sombra);
+}
+
+.moldura-fachada,
+.evento-foto,
+.mapa {
+  box-shadow: var(--sombra-grande);
+}
+
+/* Sombra de texto dos títulos grandes */
+#home h1,
+#especial_prato_promo h2,
+#historia h2,
+#sobremesas h2,
+#redes_social h2,
+#contato h2,
+#eventos h2 {
+  text-shadow: var(--sombra-texto);
+}
+
+/* Título padrão de várias seções */
+#sobremesas h2,
+#redes_social h2,
+#contato h2,
+#eventos h2 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+
+/* ==========================================================================
+   1. FUNDO DO OCEANO
+   ========================================================================== */
+
+/* Fundo base: azul claro no topo, azul profundo liso embaixo */
+.oceano-caixa {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #2a8fc4 0%, #0e6ba8 30%, #03406f 65%, #022a52 100%);
+  overflow: hidden;
+  z-index: -9999;
+}
+
+.ondas-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cada camada de onda:
+   - o formato vem de uma máscara (SVG) que fica só na borda de cima
+   - abaixo da borda, a camada é preenchida até o fim da tela
+   - posição, altura da onda, cor e velocidade vêm das variáveis de cada .ondaN-umerodadiv- */
+.wave {
+  position: absolute;
+  left: 0;
+  top: var(--topo);
+  width: calc(100% + 800px);               /* sobra de 800px = 1 repetição da onda */
+  height: calc(100vh - var(--topo));
+  background-color: var(--cor);
+  will-change: transform;
+  animation: fluxo var(--vel) linear infinite;
+
+  mask-image: var(--onda), linear-gradient(#000, #000);
+  mask-size: 800px var(--alt), 100% calc(100% - var(--alt) + 1px);
+  mask-position: 0 0, 0 calc(var(--alt) - 1px);
+  mask-repeat: repeat-x, no-repeat;
+}
+
+/* As 6 camadas: de cima (clara, ondas grandes) para baixo (escura, ondas pequenas)
+   --topo: onde começa | --alt: altura da onda | --cor | --vel: velocidade (maior = mais lenta) */
+.onda1 { --topo: 0vh;  --alt: 170px; --cor: #5ec2ec; --vel: 22s; opacity: 0.22; }
+.onda2 { --topo: 11vh; --alt: 150px; --cor: #2f9fd6; --vel: 30s; opacity: 0.22; }
+.onda3 { --topo: 24vh; --alt: 125px; --cor: #1479b8; --vel: 38s; opacity: 0.24; }
+.onda4 { --topo: 38vh; --alt: 100px; --cor: #0a4f8a; --vel: 44s; opacity: 0.28; }
+.onda5 { --topo: 54vh; --alt: 75px;  --cor: #052f5e; --vel: 52s; opacity: 0.32; }
+.onda6 { --topo: 72vh; --alt: 50px;  --cor: #021a3a; --vel: 60s; opacity: 0.38; }
+
+/* As camadas pares andam para o outro lado */
+.onda2,
+.onda4,
+.onda6 {
+  animation-direction: reverse;
+}
+
+/* Anda exatamente 800px = 1 repetição da onda, por isso o loop não "pula" */
+@keyframes fluxo {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-800px, 0, 0); }
+}
+
+
+/* ==========================================================================
+   2. MENU FLUTUANTE NO TOPO
+   ========================================================================== */
+header {
+  position: fixed;
+  top: 12px;                                /* desgruda do topo da tela */
+  left: 0;
+  right: 0;
+  width: calc(100% - 24px);                 /* 12px de espaço de cada lado */
+  max-width: 1000px;
+  margin: 0 auto;
+  z-index: 999;
+  border-radius: 50px;                      /* formato de pílula */
+  background-color: rgba(3, 4, 94, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.menu-navegacao ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 35px;
+  padding: 8px 25px;
+  margin: 0;
+}
+
+.menu-navegacao a {
+  position: relative;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  padding: 6px 0;
+}
+
+/* Linha que cresce embaixo do link ao passar o mouse (não aparece na logo) */
+.menu-navegacao li:not(.item-logo) a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--azul-claro);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.menu-navegacao li:not(.item-logo) a:hover::after {
+  width: 100%;
+}
+
+/* ---------- Logo saindo do círculo ---------- */
+.item-logo a {
+  --tam: 56px;                              /* tamanho do círculo*/
+  position: relative;
+  display: block;
+  width: var(--tam);
+  height: var(--tam);
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  background: radial-gradient(circle at 50% 30%, var(--azul-claro), #0a4f8a);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.item-logo .logo {
+  position: absolute;
+  bottom: -2px;                             /* alinha com o fundo do círculo (compensa a borda) */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  height: 135%;                             /* maior que o círculo: o topo "sai" para fora */
+  width: auto;
+  object-fit: contain;
+  transform-origin: 50% 100%;
+  transition: transform 0.3s ease;
+}
+
+.item-logo a:hover .logo {
+  transform: scale(1.08);
+}
+
+/* O espaço do topo é para o menu fixo não cobrir o início da página */
+main,
+section:first-of-type,
+#home {
+  padding-top: 120px;
+}
+
+/* No computador o botão hambúrguer não aparece */
+.botao-menu {
+  display: none;
+}
+
+/* ---------- Menu no celular: logo central + botão hambúrguer ---------- */
+@media (max-width: 768px) {
+  header {
+    top: 8px;
+    width: calc(100% - 16px);
+    border-radius: 28px;
+  }
+
+  .menu-navegacao {
+    position: relative;                     /* o botão se posiciona em relação ao menu */
+  }
+
+  /* A lista vira uma coluna: logo em cima, links embaixo */
+  .menu-navegacao ul {
+    flex-direction: column;
+    gap: 14px;
+    padding: 10px 15px;
+  }
+
+  .item-logo {
+    order: -1;                              /* logo sempre em primeiro */
+  }
+
+  .item-logo a {
+    --tam: 48px;
+  }
+
+  /* Links escondidos até abrir o menu */
+  .menu-navegacao li:not(.item-logo) {
+    display: none;
+  }
+
+  .menu-navegacao.aberto li:not(.item-logo) {
+    display: block;
+  }
+
+  .menu-navegacao.aberto ul {
+    padding-bottom: 20px;
+  }
+
+  /* O botão das três barrinhas, no canto esquerdo */
+  .botao-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .botao-menu span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Quando aberto, as barrinhas viram um X */
+  .botao-menu[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .botao-menu[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .botao-menu[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Com o menu fechado ele é mais baixo, então o espaço no topo diminui */
+  main,
+  section:first-of-type,
+  #home {
+    padding-top: 110px;
+  }
+
+  section {
+    scroll-margin-top: 90px;
+  }
+}
+
+
+/* ==========================================================================
+   3. BOTÃO FLUTUANTE DO WHATSAPP (SÓ O ÍCONE)
+   ========================================================================== */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.btn-whatsapp:hover {
+  transform: scale(1.1);
+}
+
+.icone-whatsapp {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+
+/* ==========================================================================
+   4. SEÇÃO HOME (ABERTURA DO SITE)
+   ========================================================================== */
+#home {
+  /* A foto fica atrás, e um degradê escuro por cima ajuda a ler o texto */
+  background:
+    linear-gradient(rgba(2, 2, 32, 0.55), rgba(2, 2, 32, 0.80)),
+    url("img/capas/ambiente01.webp") center / cover no-repeat;
+  min-height: 100vh;
+  box-sizing: border-box;                   /* o padding do menu não estoura a altura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-home {
+  max-width: 800px;
+}
+
+#home h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin: 0 0 20px;
+}
+
+.resumo-home {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+#home hr {
+  width: 80px;
+  height: 3px;
+  border: 0;
+  background-color: #ffffff;
+  margin: 28px auto;
+}
+
+.horario-home {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  line-height: 1.7;
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   5. FAIXAS AZUIS COM ONDA NO TOPO (FACHADA E REDES SOCIAIS)
+   ========================================================================== */
+#fachada,
+#redes_social {
+  position: relative;                       /* a onda se posiciona em relação à seção */
+  margin-top: 60px;                         /* espaço onde a onda aparece */
+  background-color: var(--faixa);
+}
+
+/* A borda ondulada no topo da faixa (mesma técnica das ondas do fundo) */
+#fachada::before,
+#redes_social::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -59px;
+  width: 100%;
+  height: 59px;
+  background-color: var(--faixa);           /* mesma cor da faixa */
+  mask-image: var(--onda);
+  mask-size: 800px 100%;
+  mask-repeat: repeat-x;
+}
+
+#fachada {
+  padding: 40px 20px 70px;
+}
+
+/* A moldura em volta da foto */
+.moldura-fachada {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+.moldura-fachada > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.moldura-fachada figcaption {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 12px;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  #fachada {
+    padding: 30px 15px 50px;
+  }
+
+  .moldura-fachada {
+    padding: 8px;
+    border-radius: 16px;
+  }
+}
+
+
+/* ==========================================================================
+   6. RODAPÉ
+   ========================================================================== */
+.rodape {
+  background-color: rgba(2, 26, 58, 0.65);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 40px 20px 25px;
+  text-align: center;
+}
+
+.rodape-conteudo {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;                          /* no celular os blocos descem um embaixo do outro */
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+}
+
+.rodape-bloco h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.rodape-bloco p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.redes_sociais {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.redes_sociais a.rede {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.redes_sociais a.rede:hover {
+  transform: scale(1.1);
+}
+
+.redes_sociais .instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888);
+}
+
+.redes_sociais .facebook {
+  background: #1877f2;
+}
+
+.direitos {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .rodape {
+    padding-bottom: 90px;                   /* o botão do WhatsApp não cobre o copyright */
+  }
+}
+
+
+/* ==========================================================================
+   7. SEÇÃO LOCALIZAÇÃO
+   ========================================================================== */
+#localizacao {
+  padding: 60px 0;
+  text-align: center;
+}
+
+#localizacao h2,
+.endereco {
+  padding: 0 20px;
+}
+
+.mapa {
+  display: block;
+  width: 100%;
+  height: 350px;
+  border: var(--borda-vidro);
+  border-radius: 20px;
+}
+
+.endereco {
+  max-width: 700px;
+  margin: 20px auto 18px;
+  line-height: 1.6;
+}
+
+/* Botão em pílula (usado em "Como chegar" e "Seguir no Instagram") */
+.btn-rota {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--azul-botao);
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.btn-rota:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  #localizacao {
+    padding: 40px 15px;
+  }
+
+  .mapa {
+    border-radius: 16px;
+  }
+}
+
+
+/* ==========================================================================
+   8. SEÇÃO REDES SOCIAIS (CARROSSEL)
+   ========================================================================== */
+#redes_social {
+  padding: 40px 0 70px;
+  text-align: center;
+}
+
+#redes_social h2 {
+  margin: 0 0 10px;
+  padding: 0 20px;
+}
+
+.redes-chamada {
+  margin: 0 0 25px;
+  padding: 0 20px;
+}
+
+/* No celular: carrossel que se arrasta para o lado */
+.carrossel {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;            /* cada foto "encaixa" ao arrastar */
+  padding: 10px 20px 25px;
+  margin-bottom: 10px;
+}
+
+.carrossel a {
+  flex: 0 0 240px;                          /* largura de cada foto */
+  scroll-snap-align: center;
+}
+
+.carrossel img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;                      /* todas quadradas, como no Instagram */
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.carrossel a:hover img {
+  transform: scale(1.04);
+}
+
+/* No computador: vira uma grade, sem precisar arrastar */
+@media (min-width: 769px) {
+  .carrossel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    max-width: 1000px;
+    margin: 0 auto 10px;
+    overflow: visible;
+  }
+}
+
+
+/* ==========================================================================
+   9. SEÇÃO CONTATO
+   ========================================================================== */
+#contato {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#contato h2 {
+  margin: 0 0 10px;
+}
+
+.contato-intro {
+  margin: 0 0 30px;
+}
+
+/* Os cartões ficam lado a lado no computador e empilham no celular */
+.contato-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card-contato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 26px 18px;
+  border-radius: 20px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card-contato:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.card-titulo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.card-info {
+  font-size: 15px;
+  opacity: 0.9;
+  overflow-wrap: anywhere;                  /* o texto longo não estoura o cartão no celular */
+}
+
+
+/* ==========================================================================
+   10. SEÇÃO CARDÁPIO (CAPA, ATALHOS, DESTAQUE DA CASA)
+   ========================================================================== */
+#cardapio {
+  padding: 0 0 60px;                        /* sem espaço nos lados: a capa vai de ponta a ponta */
+}
+
+.cardapio-intro {
+  margin: -15px 0 28px;
+  padding: 0 20px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* --- Atalhos por quantidade de pessoas --- */
+.atalhos-cardapio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto 28px;
+  padding: 0 20px;
+}
+
+.atalhos-cardapio a {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: var(--vidro);
+  backdrop-filter: blur(6px);
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.atalhos-cardapio a:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* --- Destaque da casa (usado no cardápio e na choperia) --- */
+.destaque-casa {
+  position: relative;
+  z-index: 2;                               /* a foto ampliada fica na frente do que vem depois */
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 20px;
+  align-items: center;
+  width: calc(100% - 40px);
+  max-width: 800px;
+  margin: 0 auto 28px;
+  padding: 18px;
+  border-radius: 20px;
+}
+
+.destaque-foto {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.destaque-texto h3 {
+  margin: 8px 0 6px;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+}
+
+.destaque-texto p {
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.destaque-texto .destaque-preco {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.destaque-fotos {
+  grid-column: 1 / -1;                      /* a tira ocupa a largura toda, embaixo */
+}
+
+.destaque-fotos-titulo {
+  margin: 4px 0 10px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  #cardapio {
+    padding-bottom: 40px;
+  }
+
+  .destaque-casa {
+    grid-template-columns: 1fr;
+    width: calc(100% - 30px);
+  }
+}
+
+
+/* ==========================================================================
+   11. SEÇÃO PROMOÇÃO (DESTAQUE EM DOURADO)
+   ========================================================================== */
+#especial_prato_promo {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Etiqueta pequena (usada também nos destaques do cardápio e da choperia) */
+.selo-promo {
+  display: inline-block;
+  padding: 6px 18px;
+  margin-bottom: 12px;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ffb703, #fb8500);
+  color: #021a3a;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+#especial_prato_promo h2 {
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  margin: 0 0 8px;
+}
+
+.promo-chamada {
+  margin: 0 0 28px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
+
+/* Moldura dourada que pulsa de leve em volta da imagem */
+.promo-moldura {
+  --pulso: 20px;                            /* tamanho do brilho que se espalha */
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 24px;
+  background: linear-gradient(45deg, #ffb703, #fb8500, #ffb703);
+  animation: pulsa 2.5s ease-out infinite;
+}
+
+.promo-moldura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 17px;
+}
+
+@keyframes pulsa {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.55); }
+  70%  { box-shadow: 0 0 0 var(--pulso) rgba(255, 183, 3, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 183, 3, 0); }
+}
+
+@media (max-width: 768px) {
+  #especial_prato_promo {
+    padding: 40px 20px;
+    overflow: hidden;                       /* o brilho pulsante não estoura a tela */
+  }
+
+  .selo-promo {
+    font-size: 12px;
+    padding: 5px 14px;
+  }
+
+  #especial_prato_promo h2 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+
+  .promo-chamada {
+    margin-bottom: 20px;
+  }
+
+  .promo-moldura {
+    --pulso: 10px;                          /* brilho menor no celular */
+    width: 100%;
+    max-width: 100%;
+    padding: 5px;
+    border-radius: 18px;
+  }
+
+  .promo-moldura img {
+    border-radius: 14px;
+  }
+}
+
+
+/* ==========================================================================
+   12. SEÇÃO CHOPERIA (CAPA + MENUS QUE ABREM E FECHAM)
+       Os menus (.menu-acordeao) também são usados no cardápio.
+   ========================================================================== */
+#choperia {
+  padding: 0 0 60px;
+}
+
+/* ---------- Capa: foto de ponta a ponta com o título na borda (cardápio e choperia) ---------- */
+.choperia-capa {
+  position: relative;
+  margin-bottom: 55px;
+}
+
+.choperia-imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Capa mais baixa e larga (usada no cardápio) */
+.capa-baixa img {
+  aspect-ratio: 21 / 9;
+  object-fit: cover;                        /* recorta as bordas em vez de esticar */
+}
+
+.choperia-capa h2 {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);          /* metade sobre a foto, metade fora */
+  width: max-content;
+  max-width: 92%;
+  margin: 0;
+  padding: 12px 34px;
+  text-align: center;
+  font-size: clamp(1.3rem, 4.5vw, 2.4rem);
+  border-radius: 50px;
+  background: rgba(2, 26, 58, 0.80);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Os menus: um embaixo do outro, centralizados ---------- */
+.choperia-menu,
+.cardapio-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.menu-acordeao {
+  border-radius: 20px;
+  scroll-margin-top: 100px;
+  
+}
+
+/* Com uma foto ampliada, o menu sobe na frente dos menus de baixo */
+.menu-acordeao:has(.foto-mini input:checked) {
+  z-index: 30;
+}
+
+/* ---------- O nome do menu (o que a pessoa clica) ---------- */
+.menu-acordeao summary {
+  position: relative;                       /* a onda do hover se posiciona dentro dele */
+  isolation: isolate;                       /* a onda fica atrás do texto */
+  overflow: hidden;                         /* a onda não sai do retângulo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;                         /* tira a setinha padrão do navegador */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu-acordeao summary::-webkit-details-marker {
+  display: none;                            /* o mesmo, para o Safari sugerido pelo google*/
+}
+
+.menu-acordeao summary:focus-visible {
+  outline: 2px solid var(--azul-claro);
+  outline-offset: -4px;
+}
+
+/* Setinha própria: aponta para baixo e gira quando abre */
+.menu-acordeao summary::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  margin: -4px 0 0 14px;
+  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease, margin 0.3s ease;
+}
+
+.menu-acordeao[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+
+/* Aberto: só os cantos de cima ficam arredondados, e uma linha separa do conteúdo */
+.menu-acordeao[open] summary {
+  border-radius: 20px 20px 0 0;
+  border-bottom: 2px solid var(--azul-claro);
+}
+
+/* ---------- Conteúdo do menu (aparece com um fade suave) ---------- */
+.menu-conteudo {
+  padding: 18px 22px 22px;
+}
+
+.menu-acordeao[open] .menu-conteudo {
+  animation: aparece 0.35s ease;
+}
+
+@keyframes aparece {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtítulos (Pratos executivos, Porções frias...) em etiqueta */
+.menu-conteudo h4 {
+  display: inline-block;
+  margin: 22px 0 12px;
+  padding: 5px 16px;
+  border-radius: 50px;
+  background: #f0bd4e;
+  color: #021a3a;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu-conteudo h4:first-child {
+  margin-top: 0;
+}
+
+/* Nota curta embaixo de um subtítulo */
+.grupo-nota {
+  margin: -4px 0 12px;
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* ---------- Itens do menu ---------- */
+.itens-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.item-menu {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 16px;
+  border-radius: 14px;
+}
+
+/* PNG ao lado do texto - retirado do html para ajudar otimizar*/
+.item-menu img {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;                           /* o PNG não é espremido pelo texto */
+  object-fit: contain;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45));
+}
+
+/* O texto ocupa a largura toda, para o preço ir até a ponta direita */
+.item-texto {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.item-texto strong {
+  display: block;
+  font-size: 17px;
+}
+
+/* Linha do prato: nome ........ R$ 00,00 */
+.item-linha {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  font-size: 17px;
+}
+
+.item-linha::before {                       /* os pontinhos entre o nome e o preço */
+  content: "";
+  order: 1;
+  flex: 1;
+  min-width: 16px;
+  border-bottom: 2px dotted rgba(255, 255, 255, 0.4);
+  transform: translateY(-4px);
+}
+
+.item-preco {
+  order: 2;
+  font-weight: bold;
+  white-space: nowrap;                      /* o preço nunca quebra em duas linhas */
+}
+
+.item-desc {
+  margin: 3px 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ---------- Efeito de onda no hover: a "água" sobe e a borda se move ---------- */
+.menu-acordeao summary::before,
+.item-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;                              /* fica atrás do texto e do PNG */
+  background: rgba(94, 194, 236, 0.28);     /* cor da água: mude aqui */
+  transform: translateY(100%);              /* escondida embaixo */
+  transition: transform 0.5s ease;
+  pointer-events: none;
+
+  mask-image: var(--onda), linear-gradient(#000, #000);
+  mask-size: 120px 14px, 100% calc(100% - 13px);
+  mask-position: 0 0, 0 13px;
+  mask-repeat: repeat-x, no-repeat;
+}
+
+.menu-acordeao summary:hover::before,
+.menu-acordeao summary:focus-visible::before,
+.item-menu:hover::before {
+  transform: translateY(0);                 /* a água sobe */
+  animation: ondaMover 1.6s linear infinite;
+}
+
+@keyframes ondaMover {
+  from { mask-position: 0 0, 0 13px; }
+  to   { mask-position: 120px 0, 0 13px; }
+}
+
+/* ---------- Tira de fotos: só as imagens, que ampliam no mesmo lugar ---------- */
+.tira-fotos {
+  position: relative;                       /* a foto ampliada se posiciona em relação à tira */
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.foto-mini {
+  flex: 1 1 0;                              /* as fotos dividem a largura igualmente */
+  max-width: 130px;
+  aspect-ratio: 4 / 3;
+  cursor: zoom-in;
+}
+
+/* O checkbox fica invisível: é ele que "liga" a ampliação */
+.foto-mini input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.foto-mini img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                        /* a miniatura recorta sem esticar */
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.foto-mini input:not(:checked) + img:hover {
+  transform: scale(1.05);
+}
+
+.foto-mini input:focus-visible + img {
+  outline: 2px solid var(--azul-claro);     /* anel de foco para quem usa o teclado */
+  outline-offset: 3px;
+}
+
+/* A foto ampliada: sai do lugar da miniatura e cobre o que está embaixo */
+.foto-mini input:checked + img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  width: min(100%, 420px);                  /* até 420px, ou a largura toda da tira no celular */
+  height: auto;                             /* mostra a foto inteira, na proporção original */
+  margin-inline: 0 auto;                    /* primeira foto: alinhada à esquerda */
+  object-fit: contain;
+  border: 2px solid #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
+  cursor: zoom-out;
+  transform-origin: top left;
+  animation: expande 0.3s ease;
+}
+
+/* Nome do prato sobre a foto ampliada */
+.foto-nome {
+  display: none;
+}
+
+.foto-mini input:checked ~ .foto-nome {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 21;
+  width: min(100%, 420px);
+  margin-inline: 0 auto;
+  padding: 12px 16px 28px;
+  border-radius: 16px 16px 0 0;
+  background: linear-gradient(rgba(2, 26, 58, 0.9), transparent);
+  font-weight: bold;
+  pointer-events: none;                     /* o clique passa para a foto e fecha */
+}
+
+/* Fotos do meio: a ampliada fica centralizada */
+.foto-mini:not(:first-child):not(:last-child) input:checked + img {
+  margin-inline: auto;
+  transform-origin: top center;
+}
+
+.foto-mini:not(:first-child):not(:last-child) input:checked ~ .foto-nome {
+  margin-inline: auto;
+}
+
+/* Última foto: a ampliada fica alinhada à direita */
+.foto-mini:last-child:not(:first-child) input:checked + img {
+  margin-inline: auto 0;
+  transform-origin: top right;
+}
+
+.foto-mini:last-child:not(:first-child) input:checked ~ .foto-nome {
+  margin-inline: auto 0;
+}
+
+@keyframes expande {
+  from { opacity: 0.4; transform: scale(0.3); }
+  to   { opacity: 1;   transform: scale(1); }
+}
+
+/* ---------- Tira de fotos dentro de figuras (fachada, história, eventos) ---------- */
+.moldura-fachada .tira-fotos,
+.evento-foto .tira-fotos {
+  justify-content: center;
+  margin: 12px 0 0;
+}
+
+/* Com uma foto ampliada, a figura sobe na frente do que vem depois */
+.moldura-fachada:has(.foto-mini input:checked),
+.evento-foto:has(.foto-mini input:checked) {
+  position: relative;
+  z-index: 30;
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 768px) {
+  #choperia {
+    padding-bottom: 40px;
+  }
+
+  .choperia-capa {
+    margin-bottom: 45px;
+  }
+
+  .choperia-capa h2 {
+    padding: 10px 22px;
+  }
+
+  .choperia-menu,
+  .cardapio-menu {
+    padding: 0 15px;
+  }
+
+  .menu-acordeao summary {
+    font-size: 18px;
+  }
+
+  .menu-conteudo {
+    padding: 14px 16px 18px;
+  }
+
+  .item-menu {
+    gap: 14px;
+  }
+
+  .item-menu img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+
+/* ==========================================================================
+   13. SOBREMESAS (sessão retirada do html porque não foi concluida a tempo com as fotos desejadas)
+   ========================================================================== */
+#sobremesas {
+  padding: 0 0 60px;
+}
+
+#sobremesas h2 {
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+/* Cartão simples (as sobremesas não abrem e fecham) */
+.cartao-menu {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 22px;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  #sobremesas {
+    padding: 40px 15px;
+  }
+
+  .cartao-menu {
+    padding: 16px;
+  }
+}
+
+
+/* ==========================================================================
+   14. SEÇÃO NOSSA HISTÓRIA (FOTO DE FUNDO)
+   ========================================================================== */
+#historia {
+  /* degradê escuro por cima da foto para o texto ler bem */
+  background:
+    linear-gradient(rgba(2, 2, 32, 0.65), rgba(2, 2, 32, 0.85)),
+    url("img/historia/restaurante.webp") center / cover no-repeat;
+  padding: 80px 20px;
+}
+
+.historia-conteudo {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;                       /* título e subtítulo centralizados */
+}
+
+#historia h2 {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  margin: 0 0 10px;
+}
+
+.historia-subtitulo {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-style: italic;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Cartão de vidro (o vidro vem da regra compartilhada lá em cima) */
+.bloco-historia {
+  padding: 28px 26px;
+  border-radius: 20px;
+}
+
+/* Parágrafos alinhados à esquerda: mais fáceis de ler em textos longos */
+.historia-texto {
+  text-align: left;
+}
+
+.historia-texto p {
+  margin: 0 0 18px;
+  line-height: 1.75;
+}
+
+.historia-texto p:last-child {
+  margin-bottom: 0;
+}
+
+/* A citação do presidente em destaque */
+.historia-citacao {
+  margin: 26px 0;
+  padding: 20px 22px;
+  border-left: 4px solid var(--azul-claro);
+  border-radius: 0 16px 16px 0;
+  background: var(--faixa);
+}
+
+.historia-citacao blockquote {
+  margin: 0;
+}
+
+.historia-citacao blockquote p {
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.historia-citacao figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* Foto histórica dentro do cartão de texto */
+.foto-historia {
+  width: 75%;
+  margin: 24px auto;
+}
+
+/* Faixa de facilidades no final */
+.historia-facilidades {
+  max-width: 650px;
+  margin: 24px auto 0;
+  padding: 14px 22px;
+  border-radius: 20px;
+  background: var(--faixa);
+  border: var(--borda-vidro);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  #historia {
+    padding: 50px 15px;
+  }
+
+  .bloco-historia {
+    padding: 20px 16px;
+  }
+
+  .historia-citacao {
+    padding: 16px;
+  }
+
+  .foto-historia {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   15. SEÇÃO EVENTOS
+   ========================================================================== */
+#eventos {
+  padding: 60px 20px;
+}
+
+#eventos h2 {
+  text-align: center;
+  margin: 0 0 30px;
+  text-transform: uppercase;
+}
+
+/* Foto à esquerda e lista à direita no computador */
+.eventos-conteudo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.evento-foto {
+  margin: 0;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+/* A imagem aparece inteira, então serve tanto para cartaz em pé quanto para foto deitada */
+.evento-foto > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.evento-foto figcaption {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.lista-eventos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.evento {
+  padding: 16px 18px;
+  border-radius: 16px;
+}
+
+.evento h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.evento p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  #eventos {
+    padding: 40px 15px;
+  }
+
+  .eventos-conteudo {
+    grid-template-columns: 1fr;             /* foto em cima, lista embaixo */
+  }
+}
+
+
+/* ==========================================================================
+   16. GALERIA DO AMBIENTE
+   ========================================================================== */
+.galeria-ambiente {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.galeria-titulo {
+  font-family: 'Playfair Display', serif;   /* esta fonte não está carregada no <head> */
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.galeria-subtitulo {
+  font-family: 'Inter', sans-serif;         /* esta também não */
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+/* A "tabela" inteligente (grid): colunas automáticas */
+.grid-ambiente {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card de foto estilo moldura antiga */
+.card-foto {
+  position: relative;
+  overflow: hidden;
+  border: 8px solid #fdfbf7;                /* moldura off-white de foto revelada */
+  border-radius: 4px;
+  background-color: #fdfbf7;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  aspect-ratio: 4 / 3;                      /* todas as fotos com a mesma proporção */
+  transition: transform 0.3s ease;
+}
+
+.card-foto:hover {
+  transform: translateY(-5px);              /* flutua ao passar o mouse */
+}
+
+.card-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                        /* preenche o espaço sem distorcer */
+}
+
+/* Legenda vintage que aparece ao passar o mouse */
+.legenda-vintage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 17px;
+  background: linear-gradient(transparent, rgba(6, 14, 27, 0.95));
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-foto:hover .legenda-vintage {
+  opacity: 1;
+}
+
+.legenda-vintage h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin: 0 0 5px;
+  color: #ffcc00;                           /* toque dourado vintage no título */
+  text-shadow: 3px 3px 3px rgba(28, 27, 108, 0.5);      /* sombra para destacar o título */
+}
+
+.legenda-vintage p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+
+/* ==========================================================================
+   17. MOVIMENTO REDUZIDO (quem desativou animações no sistema vê tudo parado)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .wave,
+  .promo-moldura,
+  .menu-acordeao summary:hover::before,
+  .item-menu:hover::before {
+    animation: none;
+  }
+}
