@@ -1,3 +1,5 @@
+>**Projeto de Extensão Acadêmica — FATEC** | Curso: Tecnologia em Informática para Negócios (Comunicação e Expressão)
+
 # 🐟 Restaurante & Choperia Peixe-Vivo
 
 Site vitrine institucional desenvolvido como **Projeto de Extensão** para o curso de **Tecnologia em Informática para Negócios** (disciplina de Comunicação e Expressão) da **FATEC**, em colaboração com o **Restaurante Peixe-Vivo**, localizado às margens do Rio Grande em **Icém - SP**.
