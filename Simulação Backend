@@ -1,0 +1,53 @@
+Na seção de redes sociais, a ideia era mostrar o que está rolando no Instagram do restaurante para trazer o visitante para o perfil deles. Como o projeto é front-end e ainda não entramos na parte de back-end para consumir API de rede social de forma dinâmica, resolvemos isso de um jeito estático e estratégico: selecionamos posts reais previamente, salvamos as imagens otimizadas e apontamos cada card direto para o post ou perfil oficial no Instagram."
+
+"Na prática, isso entrega a mesma sensação visual de vitrine social, evita dependência de API externa ou lentidão extra, e ainda ajuda a converter o visitante do site para o Instagram do Peixe-Vivo
+
+1. Vitrine estática de posts apontando para o Instagram (index.html)
+Mostra os cards selecionados previamente com links externos seguros (target="_blank" e rel="noopener noreferrer") e loading="lazy":
+<section id="redes_social">
+  <h2>Siga o Peixe-Vivo</h2>
+  <p class="redes-chamada">Veja o que está acontecendo no nosso Instagram.</p>
+
+  <div class="carrossel">
+    <a href="https://www.instagram.com/peixe_vivo_restaurante_/p/Dc_sNUkAqo0/" target="_blank" rel="noopener noreferrer">
+      <img src="img/posts/posts1.webp" alt="Prato servido no Restaurante Peixe-Vivo" loading="lazy">
+    </a>
+    <a href="https://www.instagram.com/peixe_vivo_restaurante_/p/Dc_riD3zzhI/" target="_blank" rel="noopener noreferrer">
+      <img src="img/posts/posts2.webp" alt="Prato servido no Restaurante Peixe-Vivo" loading="lazy">
+    </a>
+    <!-- demais posts selecionados -->
+  </div>
+
+  <a class="btn-rota" href="https://www.instagram.com/peixe_vivo_restaurante_/" target="_blank" rel="noopener noreferrer">
+    Seguir no Instagram
+  </a>
+</section>
+
+2. Carrossel no celular e grade no computador (style.css)
+Mostra como o mesmo bloco vira um carrossel que arrasta no mobile e uma grade no desktop:
+.carrossel {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 20px 25px;
+}
+
+.carrossel img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+@media (min-width: 769px) {
+  .carrossel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    max-width: 1000px;
+    margin: 0 auto 10px;
+    overflow: visible;
+  }
+}
+
