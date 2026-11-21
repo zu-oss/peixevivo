@@ -1,0 +1,42 @@
+Como o restaurante fica às margens da BR-153, muita gente acessa o site pelo celular na estrada, usando dados móveis. Por isso, tivemos um cuidado forte com a performance para a página abrir rápido."
+
+"Primeiro, otimizamos todo o pacote visual: convertemos as fotos para o formato WebP e redimensionamos cada imagem para o tamanho real de uso — 1920px nas capas de tela cheia e 1000px a 1200px nas fotos internas. Com isso, derrubamos o carregamento inicial da página de quase 30 MB para cerca de 2 MB."
+
+"No código, aplicamos loading="lazy" nas imagens das seções inferiores e no mapa do Google Maps para que o navegador só baixe esses arquivos conforme o usuário rola a página. Além disso, resolvemos animações, acordeões e ampliação de fotos com CSS puro e HTML nativo, deixando o JavaScript com apenas 20 linhas focado só no menu do celular
+
+1. Carregamento sob demanda com loading="lazy" e imagens em WebP (index.html)
+Mostra que as imagens pesadas e o mapa só carregam quando o usuário chega neles:
+<!-- Imagens otimizadas em WebP + carregamento sob demanda -->
+<img src="img/capas/mapa01.webp" alt="Mapa ilustrado da BR-153 em Icém-SP" loading="lazy">
+
+<!-- Mapa incorporado do Google Maps também com lazy loading -->
+<iframe class="mapa"
+        title="Mapa com a localização do Restaurante Peixe-Vivo"
+        src="https://www.google.com/maps/embed?..."
+        loading="lazy"></iframe>
+
+2. Script carregado com defer e JavaScript enxuto (index.html + script.js)
+Mostra que o script não trava a renderização da tela (defer) e tem apenas o essencial para o mobile:
+const menu = document.querySelector('.menu-navegacao');
+const botao = document.querySelector('.botao-menu');
+
+botao.addEventListener('click', () => {
+  const aberto = menu.classList.toggle('aberto');
+  botao.setAttribute('aria-expanded', aberto);
+  botao.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+});
+
+3. Acessibilidade de movimento no CSS (style.css)
+Um detalhe rápido que mostra cuidado extra com desempenho e conforto visual:
+
+@media (prefers-reduced-motion: reduce) {
+  .wave,
+  .promo-moldura,
+  .menu-acordeao summary:hover::before,
+  .item-menu:hover::before {
+    animation: none;
+  }
+}
+
+
+"Assim, conseguimos entregar a identidade visual do Rio Grande com animações e efeito de vidro, mantendo o site leve (~2 MB na abertura) e funcional tanto no computador quanto no celular."
