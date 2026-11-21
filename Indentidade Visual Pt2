@@ -1,0 +1,84 @@
+"Como o site é em página única (one-page), colocar o cardápio e a choperia inteiros abertos deixaria a rolagem gigante, principalmente no celular. Para melhorar a experiência, usamos a tag nativa <details> com <summary>, que já entrega o efeito de acordeão que abre e fecha — assim o cliente vê o que quer na hora sem a página ficar excessivamente longa."   "Além disso, como não tínhamos foto de todos os pratos e porções — e mesmo se tivéssemos, colocar tudo deixaria a página pesada e cansativa —, criamos um item em destaque e uma fileira de fotos (.tira-fotos). Para ampliar a foto ao clicar, usamos um input do tipo checkbox invisível ligado ao :checked no CSS, resolvendo a interação com CSS puro, sem precisar de JavaScript extra.
+
+1. Acordeão nativo com <details> e <summary> (index.html + style.css)
+No index.html (exemplo no cardápio e na choperia):
+
+<details class="menu-acordeao" id="grupo-1-pessoa" open>
+  <summary>Para 1 pessoa</summary>
+  <div class="menu-conteudo">
+    <!-- listas de pratos e preços -->
+  </div>
+</details>
+
+No style.css (seta que gira ao abrir e aparição suave do conteúdo):
+.menu-acordeao[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+
+.menu-acordeao[open] .menu-conteudo {
+  animation: aparece 0.35s ease;
+}
+
+
+Item em destaque + fileira de fotos com checkbox (index.html)
+<article class="destaque-casa">
+  <img class="destaque-foto" src="img/cardapio/destaquemenucostelapacu.webp"
+       alt="Costela de pacu frita com fritas, arroz e pirão" loading="lazy">
+  <div class="destaque-texto">
+    <span class="selo-promo">Mais pedido da casa</span>
+    <h3>Costela de pacu</h3>
+    <p class="destaque-preco">R$ 215,00</p>
+  </div>
+
+  <div class="destaque-fotos">
+    <div class="tira-fotos">
+      <label class="foto-mini">
+        <input type="checkbox" aria-label="Ampliar foto: Peixe à Brasileira">
+        <img src="img/cardapio/prato1peixeabrasilera.webp" alt="Peixe à Brasileira" loading="lazy">
+        <span class="foto-nome">Peixe à Brasileira</span>
+      </label>
+      <!-- demais fotos da fileira -->
+    </div>
+  </div>
+</article>
+
+3. Ampliação com CSS puro via :checked (style.css)
+.foto-mini input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.foto-mini input:checked + img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  width: min(100%, 420px);
+  height: auto;
+  object-fit: contain;
+  cursor: zoom-out;
+  animation: expande 0.3s ease;
+}
+
+.foto-mini input:checked ~ .foto-nome {
+  display: block;
+  position: absolute;
+  z-index: 21;
+}
+
+E para esse item em destaque, usamos a tag semântica <article> em vez de só uma div comum. Isso ajuda a organizar o conteúdo como um bloco independente — o que também facilita para mecanismos de busca e ferramentas de leitura entenderem o que é o prato ou a promoção principal ali dentro
+<!-- Destaque da casa mais pedido -->
+<article class="destaque-casa">
+  <img class="destaque-foto" src="img/cardapio/destaquemenucostelapacu.webp"
+       alt="Costela de pacu frita com fritas, arroz e pirão" loading="lazy">
+
+  <div class="destaque-texto">
+    <span class="selo-promo">Mais pedido da casa</span>
+    <h3>Costela de pacu</h3>
+    <p>Peixe frito com fritas, arroz e pirão.</p>
+    <p class="destaque-preco">R$ 215,00</p>
+  </div>
+</article>
