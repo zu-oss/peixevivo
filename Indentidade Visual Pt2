@@ -82,3 +82,5 @@ E para esse item em destaque, usamos a tag semântica <article> em vez de só um
     <p class="destaque-preco">R$ 215,00</p>
   </div>
 </article>
+
+mas o <article> em si não garante sozinho que o Google vai destacar um item fora do site, mas ajuda na semântica e na estrutura do documento para buscadores e tecnologias assistivas interpretarem melhor o bloco
