@@ -4,6 +4,7 @@
 
 Site vitrine institucional desenvolvido como **Projeto de Extensão** para o curso de **Tecnologia em Informática para Negócios** (disciplina de Comunicação e Expressão) da **FATEC**, em colaboração com o **Restaurante Peixe-Vivo**, localizado às margens do Rio Grande em **Icém - SP**.
 
+##Link do Website: [https://peixevivorestaurante.com.br](https://peixevivorestaurante.com.br)
 ---
 
 ## 🎯 Sobre o Projeto
